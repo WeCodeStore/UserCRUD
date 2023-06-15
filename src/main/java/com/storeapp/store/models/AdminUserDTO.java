@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @NoArgsConstructor
@@ -20,5 +21,14 @@ public class AdminUserDTO {
     private String shippingAddressId;
     private String billingAddressId;
     private String phoneNumber;
+
     private List<String> roles;
+
+    public void setRoles(List<Role> roles) {
+        var list = new ArrayList<String>();
+        for (Role role : roles) {
+            list.add(role.getName());
+        }
+        this.roles = list;
+    }
 }
