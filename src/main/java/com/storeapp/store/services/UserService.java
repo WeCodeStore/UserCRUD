@@ -1,7 +1,6 @@
 package com.storeapp.store.services;
 
 import com.storeapp.store.models.AdminUserDTO;
-import com.storeapp.store.models.Role;
 import com.storeapp.store.models.User;
 import com.storeapp.store.repository.UserRepository;
 import org.modelmapper.ModelMapper;
@@ -24,13 +23,7 @@ public class UserService {
         var dtoList = new ArrayList<AdminUserDTO>();
         var list = userRepository.findAll();
         for (User user : list) {
-            var newUser = modelMapper.map(user, AdminUserDTO.class);
-            var roleList = new ArrayList<String>();
-            for (Role role : user.getRoles()) {
-                roleList.add(role.getName());
-            }
-            newUser.setRoles(roleList);
-            dtoList.add(newUser);
+            dtoList.add(modelMapper.map(user, AdminUserDTO.class));
         }
         return dtoList;
     }
