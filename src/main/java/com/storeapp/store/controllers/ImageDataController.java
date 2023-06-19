@@ -1,6 +1,6 @@
 package com.storeapp.store.controllers;
 
-import com.storeapp.store.models.ImageData;
+import com.storeapp.store.models.Image;
 import com.storeapp.store.services.ImageDataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,7 +17,9 @@ public class ImageDataController {
     @Autowired
     private ImageDataService imageDataService;
 
-    @PostMapping
+    @PostMapping(value="upload/file",
+                 consumes={MediaType.MULTIPART_FORM_DATA_VALUE},
+                 produces={MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<?> uploadImage(@RequestParam("image") MultipartFile file) throws IOException {
         String response = imageDataService.uploadImage(file);
 
@@ -27,7 +29,7 @@ public class ImageDataController {
 
     @GetMapping("/info/{name}")
     public ResponseEntity<?>  getImageInfoByName(@PathVariable("name") String name){
-        ImageData image = imageDataService.getInfoByImageByName(name);
+        Image image = imageDataService.getInfoByImageByName(name);
 
         return ResponseEntity.status(HttpStatus.OK)
                 .body(image);

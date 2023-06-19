@@ -1,7 +1,8 @@
 package com.storeapp.store.services;
 
 import com.storeapp.store.helper.ImageUtil;
-import com.storeapp.store.models.ImageData;
+import com.storeapp.store.models.Image;
+import com.storeapp.store.models.Product;
 import com.storeapp.store.repository.ImageDataRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,7 @@ public class ImageDataService {
 
     public String uploadImage(MultipartFile file) throws IOException {
 
-        imageDataRepository.save(ImageData.builder()
+        imageDataRepository.save(Image.builder()
                 .name(file.getOriginalFilename())
                 .type(file.getContentType())
                 .imageData(ImageUtil.compressImage(file.getBytes())).build());
@@ -28,20 +29,34 @@ public class ImageDataService {
     }
 
     @Transactional
-    public ImageData getInfoByImageByName(String name) {
-        Optional<ImageData> dbImage = imageDataRepository.findByName(name);
+    public Image getInfoByImageByName(String name) {
+        Optional<Image> dbImage = imageDataRepository.findByName(name);
+        if (dbImage.isPresent()) {
+            Image image= dbImage.get();
+            if (image.getImageData() != null) {
+                return Image.builder()
+                        .name(image.getName())
+                        .imageId(image.getImageId())
+                        .product(image.getProduct())
+                        .imageUrl(image.getImageUrl())
+                        .type(image.getType())
+                        .imageData(ImageUtil.decompressImage(image.getImageData())).build();
+            } else{
+                return image;
+            }
+        }
 
-        return ImageData.builder()
-                .name(dbImage.get().getName())
-                .type(dbImage.get().getType())
-                .imageData(ImageUtil.decompressImage(dbImage.get().getImageData())).build();
-
+        return null;
     }
 
     @Transactional
     public byte[] getImage(String name) {
-        Optional<ImageData> dbImage = imageDataRepository.findByName(name);
-        byte[] image = ImageUtil.decompressImage(dbImage.get().getImageData());
+        Optional<Image> dbImage = imageDataRepository.findByName(name);
+        byte[] image = null;
+
+        if (dbImage.isPresent() && dbImage.get().getImageData() != null) {
+            image = ImageUtil.decompressImage(dbImage.get().getImageData());
+        }
         return image;
     }
 
