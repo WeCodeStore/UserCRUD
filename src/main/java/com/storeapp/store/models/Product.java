@@ -33,6 +33,8 @@ public class Product {
     private String sku;
     private String image;
     private String description;
-    private long categoryId;
 
+    @ManyToOne
+    @JoinColumn(name = "categoryId")
+    private Category category;
 }
