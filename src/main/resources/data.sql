@@ -16,3 +16,5 @@ INSERT INTO ORDERTABLE (userId, orderNumber, orderDate, totalPrice) VALUES ( 1, 
 INSERT INTO ORDERPRODUCTS (order_Id, product_Id) VALUES (1, 1), (1, 1);
 
 INSERT INTO REVIEW (comment, rating, productId, userId) VALUES ('Working Product', 5.0, 1, 1);
+
+INSERT INTO IMAGEDATA (  name, type, imageData) VALUES ('Imgae 1', 'JPG', null);
