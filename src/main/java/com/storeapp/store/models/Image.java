@@ -22,9 +22,9 @@ public class Image {
 
     private String imageUrl;
 
-    @ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne(fetch=FetchType.EAGER)
     @JoinColumn(name="productId")
-    private Product product;
+    public Product product;
 
     @Override
     public boolean equals(Object o){
