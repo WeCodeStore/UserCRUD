@@ -19,7 +19,6 @@ public class UserService {
     ModelMapper modelMapper = new ModelMapper();
 
     public List<AdminUserDTO> getAllUsers() {
-
         var dtoList = new ArrayList<AdminUserDTO>();
         var list = userRepository.findAll();
         for (User user : list) {

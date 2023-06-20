@@ -1,12 +1,12 @@
 INSERT INTO ROLE (name) VALUES ('admin'), ('seller'), ('buyer');
 
+INSERT INTO ADDRESS (city, street, state, postalCode, country) VALUES ('Charlotte', '123 Seezam street', 'NC', '28092', 'USA'), ('Charlotte', '123 Charles Ave', 'NC', '28092', 'USA');
+
 INSERT INTO USERTABLE (userId, firstName, lastName, username, email, shippingAddressId, billingAddressId, phoneNumber) VALUES
-(1, 'John', 'Smith', 'jsmith', 'jsmith@email.com', 'shipping', 'billing', 'phone'),
-(2, 'Jane', 'Doe', 'jdoe', 'jdoe@email.com', 'shipping', 'billing', 'phone');
+(1, 'John', 'Smith', 'jsmith', 'jsmith@email.com', 1, 1, 'phone'),
+(2, 'Jane', 'Doe', 'jdoe', 'jdoe@email.com', 2, 2, 'phone');
 
-INSERT INTO USERROLES (role_Id, user_Id) VALUES (1, 1),(2, 1);
-
-INSERT INTO ADDRESS (city, street, state, postalCode, country) VALUES ('Charlotte', '123 Seezam street', 'NC', '28092', 'USA');
+INSERT INTO USERROLES (role_Id, user_Id) VALUES (1, 1),(2, 1),(3,2);
 
 INSERT INTO CATEGORY (name) VALUES ('clothes'), ('tools'), ('electronics'), ('toys'), ('books');
 
