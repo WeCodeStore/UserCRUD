@@ -22,7 +22,7 @@ public class Product {
     @ManyToMany(mappedBy = "products")
     private List<Order> orders;
 
-    @SequenceGenerator(name="product_seq", initialValue = 2)
+    @SequenceGenerator(name="product_seq", initialValue = 18)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "product_seq")
     @Min(value=1)
     @Column(name="productId")

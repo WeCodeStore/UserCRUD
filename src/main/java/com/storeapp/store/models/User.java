@@ -24,7 +24,7 @@ public class User {
 
     @Id
     @Min(value = 1)
-    @SequenceGenerator(name="user_seq", initialValue = 3)
+    @SequenceGenerator(name="user_seq", initialValue = 9)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_seq")
     @Column(name="userId")
     private long userId;
