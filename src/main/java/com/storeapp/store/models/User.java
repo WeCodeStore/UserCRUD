@@ -24,7 +24,7 @@ public class User {
 
     @Id
     @Min(value = 1)
-    @SequenceGenerator(name="user_seq", initialValue = 2)
+    @SequenceGenerator(name="user_seq", initialValue = 3)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_seq")
     @Column(name="userId")
     private long userId;
@@ -32,7 +32,11 @@ public class User {
     private String lastName;
     private String username;
     private String email;
-    private String shippingAddressId;
-    private String billingAddressId;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "shippingAddressId", referencedColumnName = "addressId")
+    private Address shippingAddress;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "billingAddressId", referencedColumnName = "addressId")
+    private Address billingAddress;
     private String phoneNumber;
 }
