@@ -27,4 +27,8 @@ public class UserService {
         }
         return dtoList;
     }
+
+    public AdminUserDTO getUserById(int id) {
+        return modelMapper.map(userRepository.findById(id), AdminUserDTO.class);
+    }
 }
