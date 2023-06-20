@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -31,8 +32,23 @@ public class Product {
     private double price;
     private long quantity;
     private String sku;
-    private String image;
+
     private String description;
     private long categoryId;
+
+    @OneToMany( mappedBy="product",
+            cascade=CascadeType.ALL
+    )
+    private List<Image> images = new ArrayList<>();
+
+    public void addImage(Image image){
+        images.add(image);
+      //  image.setProduct(this);
+    }
+
+    public void removeImage(Image image){
+        images.remove(image);
+     //   image.setProduct(null);
+    }
 
 }
