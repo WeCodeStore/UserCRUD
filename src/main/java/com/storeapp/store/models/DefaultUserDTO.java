@@ -16,6 +16,6 @@ public class DefaultUserDTO {
     private String username;
     private String email;
     private Address shippingAddress;
-    private String billingAddressId;
+    private Address billingAddress;
     private String phoneNumber;
 }

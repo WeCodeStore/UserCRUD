@@ -2,7 +2,6 @@ package com.storeapp.store.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Min;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,15 +15,18 @@ import lombok.Setter;
 public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id")
-    private long id;
+    @Column(name="addressId")
+    private long addressId;
     private String city;
     private String street;
     private String state;
     private String postalCode;
     private String country;
 
-    @JsonIgnore
     @OneToOne(mappedBy = "shippingAddress")
-    private User user;
+    @JsonIgnore
+    private User userWithShippingAddress;
+    @OneToOne(mappedBy = "billingAddress")
+    @JsonIgnore
+    private User userWithBillingAddress;
 }
