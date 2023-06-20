@@ -21,7 +21,7 @@ public class ImageController {
     @PostMapping(value="upload/file",
                  consumes={MediaType.MULTIPART_FORM_DATA_VALUE},
                  produces={MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<?> uploadImage(@RequestParam("image") MultipartFile file, @RequestParam("productId") Long productId) throws IOException {
+    public ResponseEntity<String> uploadImage(@RequestParam("image") MultipartFile file, @RequestParam("productId") Long productId) throws IOException {
        try {
            String response = imageDataService.uploadImage(file, productId);
 
@@ -33,7 +33,7 @@ public class ImageController {
     }
 
     @GetMapping("/info/{name}")
-    public ResponseEntity<?>  getImageInfoByName(@PathVariable("name") String name){
+    public ResponseEntity<ImageDTO>  getImageInfoByName(@PathVariable("name") String name){
         ImageDTO image = imageDataService.getInfoByImageByName(name);
 
         return ResponseEntity.status(HttpStatus.OK)
@@ -41,7 +41,7 @@ public class ImageController {
     }
 
     @GetMapping("/byproduct/{productId}")
-    public ResponseEntity<?>  getImagesByProduct(@PathVariable("productId") Long productId){
+    public ResponseEntity<List<ImageDTO>>  getImagesByProduct(@PathVariable("productId") Long productId){
         if (productId <= 0){
             return ResponseEntity.badRequest().header("Error", "The image product id must be positive number. ").build();
         }
@@ -56,7 +56,7 @@ public class ImageController {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<?>  getAllImages(){
+    public ResponseEntity<List<ImageDTO>>  getAllImages(){
 
         List<ImageDTO> lstImageDTO = imageDataService.getAllImages();
         if (lstImageDTO != null) {
@@ -69,7 +69,7 @@ public class ImageController {
     }
 
     @GetMapping("/{name}")
-    public ResponseEntity<?>  getImageByName(@PathVariable("name") String name){
+    public ResponseEntity<byte[]>  getImageByName(@PathVariable("name") String name){
         if (name == null || name.isEmpty()){
             return ResponseEntity.badRequest().header("Error", "The image name should not be empty. ").build();
         }
