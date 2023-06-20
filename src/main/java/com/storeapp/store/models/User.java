@@ -32,7 +32,9 @@ public class User {
     private String lastName;
     private String username;
     private String email;
-    private String shippingAddressId;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "shippingAddressId", referencedColumnName = "id")
+    private Address shippingAddress;
     private String billingAddressId;
     private String phoneNumber;
 }

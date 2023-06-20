@@ -18,7 +18,7 @@ public class AdminUserDTO {
     private String lastName;
     private String username;
     private String email;
-    private String shippingAddressId;
+    private Address shippingAddress;
     private String billingAddressId;
     private String phoneNumber;
 
