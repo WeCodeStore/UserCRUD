@@ -39,7 +39,6 @@ public class Product {
     @OneToMany( mappedBy="product",
             cascade=CascadeType.ALL
     )
-   // @JoinColumn(name="imageId")
     private List<Image> images = new ArrayList<>();
 
     public void addImage(Image image){
