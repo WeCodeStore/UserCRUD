@@ -34,7 +34,10 @@ public class Product {
     private String sku;
 
     private String description;
-    private long categoryId;
+
+    @ManyToOne
+    @JoinColumn(name = "categoryId")
+    private Category category;
 
     @OneToMany( mappedBy="product",
             cascade=CascadeType.ALL
@@ -43,12 +46,9 @@ public class Product {
 
     public void addImage(Image image){
         images.add(image);
-      //  image.setProduct(this);
     }
 
     public void removeImage(Image image){
         images.remove(image);
-     //   image.setProduct(null);
     }
-
 }

@@ -1,5 +1,6 @@
 package com.storeapp.store.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -24,6 +25,7 @@ public class Image {
 
     @ManyToOne(fetch=FetchType.EAGER)
     @JoinColumn(name="productId")
+    @JsonIgnore
     public Product product;
 
     @Override

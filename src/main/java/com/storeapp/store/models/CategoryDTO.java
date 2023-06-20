@@ -9,15 +9,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
-public class ReviewDTO {
-
+public class CategoryDTO {
     private long id;
-    private String comment;
-    private double rating;
-    private long productId;
-    private long userId;
-
-//    public void setUser(User user) {
-//        this.user = user.getUsername();
-//    }
+    private String name;
 }

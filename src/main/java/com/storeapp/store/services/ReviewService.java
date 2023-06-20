@@ -1,6 +1,5 @@
 package com.storeapp.store.services;
 
-import com.storeapp.store.models.AddressDTO;
 import com.storeapp.store.models.Review;
 import com.storeapp.store.models.ReviewDTO;
 import com.storeapp.store.repository.ReviewRepository;
@@ -45,5 +44,4 @@ public class ReviewService {
         }
         return dtoList;
     }
-
 }

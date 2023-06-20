@@ -22,6 +22,7 @@ public class Address {
     private String state;
     private String postalCode;
     private String country;
+
     @OneToOne(mappedBy = "shippingAddress")
     @JsonIgnore
     private User userWithShippingAddress;
