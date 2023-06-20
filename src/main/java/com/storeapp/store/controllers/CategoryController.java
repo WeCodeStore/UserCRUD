@@ -1,6 +1,6 @@
 package com.storeapp.store.controllers;
 
-import com.storeapp.store.models.Category;
+import com.storeapp.store.models.CategoryDTO;
 import com.storeapp.store.services.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +17,7 @@ public class CategoryController {
     CategoryService categoryService;
 
     @GetMapping("")
-    public List<Category> getAllCategories() {
+    public List<CategoryDTO> getAllCategories() {
         return categoryService.getAllCategories();
     }
 }

@@ -1,6 +1,7 @@
 package com.storeapp.store.controllers;
 
 import com.storeapp.store.models.Product;
+import com.storeapp.store.models.ProductDTO;
 import com.storeapp.store.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,7 +19,7 @@ public class ProductController {
     ProductService productService;
 
     @GetMapping("")
-    public List<Product> getAllProducts() {
+    public List<ProductDTO> getAllProducts() {
         return productService.getAllProducts();
     }
 
