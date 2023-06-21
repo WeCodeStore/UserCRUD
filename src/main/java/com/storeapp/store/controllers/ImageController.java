@@ -68,7 +68,9 @@ public class ImageController {
         }
     }
 
-    @GetMapping("/{name}")
+
+    //This similar to getImageInfoByName() which just return image instead of object
+   /* @GetMapping("/{name}")
     public ResponseEntity<byte[]>  getImageByName(@PathVariable("name") String name){
         if (name == null || name.isEmpty()){
             return ResponseEntity.badRequest().header("Error", "The image name should not be empty. ").build();
@@ -78,5 +80,5 @@ public class ImageController {
         return ResponseEntity.status(HttpStatus.OK)
                 .contentType(MediaType.valueOf("image/png"))
                 .body(image);
-    }
+    }*/
 }

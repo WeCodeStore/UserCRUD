@@ -1,9 +1,6 @@
 package com.storeapp.store.utils;
 
-import com.storeapp.store.models.Address;
-import com.storeapp.store.models.AddressDTO;
-import com.storeapp.store.models.Role;
-import com.storeapp.store.models.User;
+import com.storeapp.store.models.*;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -17,4 +14,10 @@ public class TestData {
     public static List<Address> addressList = new ArrayList<>(Collections.singletonList(address));
     public static AddressDTO addressDto = new AddressDTO(1L, "Charlotte", "123 New Street", "NC", "28092", "USA");
     public static List<AddressDTO> addressDtoList = new ArrayList<>(Collections.singletonList(addressDto));
+
+    public static Product product = new Product();
+    public static Image image = new Image(1l, "tree", "png", null, "http://commondatastorage.googleapis.com/codeskulptor-demos/riceracer_assets/img/tree_2.png", product);
+    public static List<Image> images = new ArrayList<>(Collections.singletonList(image));
+    public static ImageDTO imageDTO = new ImageDTO(1l, "tree", "png", null, "http://commondatastorage.googleapis.com/codeskulptor-demos/riceracer_assets/img/tree_2.png");
+    public static List<ImageDTO> imageDTOList = new ArrayList<>(Collections.singletonList(imageDTO));
 }
