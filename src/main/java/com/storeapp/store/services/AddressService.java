@@ -21,8 +21,10 @@ public class AddressService {
     public List<AddressDTO> getAllAddresses() {
         var addressList = addressRepository.findAll();
         var dtoList = new ArrayList<AddressDTO>();
-        for(Address address: addressList) {
-            dtoList.add(modelMapper.map(address, AddressDTO.class));
+        if (addressList.size() > 0) {
+            for (Address address : addressList) {
+                dtoList.add(modelMapper.map(address, AddressDTO.class));
+            }
         }
         return dtoList;
     }
