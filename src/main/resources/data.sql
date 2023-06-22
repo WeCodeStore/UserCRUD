@@ -41,11 +41,11 @@ INSERT INTO PRODUCT (productId, name, price, quantity, sku, description, categor
           (8, 'INSIGNIA 32-inch Class F20 Series Smart HD', 79.99, 5, 'B09ZLTMWWH', '720p resolution View your favorite movies, shows and games in high definition.', 3 ),
           (9, 'Tree of Life Vitamin C', 19.0, 8, 'B014PGEEO2', 'Retinol and Hyaluronic Acid serum for Brightening, Firming, & Hydrating for Face - 3 Ct x 1 Fl Oz - Total Skin Reset, Anti Aging , Dark Spot Correcting', 10),
           (10, 'BBTFAA 𝟔𝟎𝐏𝐂𝐒 Under Eye Patches', 11.9, 4, 'B0BZCKX7VL', '24K Gold Collagen Eye Mask for Puffy Eyes', 10 ),
-          (12, 'GAMZOO STEM Building', 39.9, 10, 'B07Q31WX1C', 'Toys for Kids with 2-in-1 Remote Control Racer Snap Together Engineering Kits Early Learning Racecar Building Blocks', 4 ),
-          (13, 'DOWELL Magnetic Screwdriver Set', 25.9, 12, 'B09C27ZDYL', 'DOWELL Magnetic Screwdriver Set', 2 ),
-          (14, 'KUDES Ski Goggles', 9.9, 30, 'B0BF8XWHZC', 'UV Protection Snowboard Sunglasses, Cycling Motorcycle Snow Sports Gear Accessories for Kids', 6 ),
-          (16, 'Stance Barracks', 32.9, 16, 'B0B7MLZKQN', '2-Pack Snow Sport Socks', 6),
-          (17, 'Dell OptiPlex 9020',700.50,5, 'B0BLTY5SZQ', 'Desktop Computer i7-4790 Small Form Factor PC, 16GB Ram 1TB M.2 MVMe', 8);
+          (11, 'GAMZOO STEM Building', 39.9, 10, 'B07Q31WX1C', 'Toys for Kids with 2-in-1 Remote Control Racer Snap Together Engineering Kits Early Learning Racecar Building Blocks', 4 ),
+          (12, 'DOWELL Magnetic Screwdriver Set', 25.9, 12, 'B09C27ZDYL', 'DOWELL Magnetic Screwdriver Set', 2 ),
+          (13, 'KUDES Ski Goggles', 9.9, 30, 'B0BF8XWHZC', 'UV Protection Snowboard Sunglasses, Cycling Motorcycle Snow Sports Gear Accessories for Kids', 6 ),
+          (14, 'Stance Barracks', 32.9, 16, 'B0B7MLZKQN', '2-Pack Snow Sport Socks', 6),
+          (15, 'Dell OptiPlex 9020',700.50,5, 'B0BLTY5SZQ', 'Desktop Computer i7-4790 Small Form Factor PC, 16GB Ram 1TB M.2 MVMe', 8);
 
 INSERT INTO IMAGE ( productId,name, type, imageUrl)
 VALUES (1, 'brush', 'JPG', 'C:/images/brush1.jpg'),

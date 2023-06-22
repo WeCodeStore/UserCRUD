@@ -24,12 +24,12 @@ public class ProductController {
     }
 
     @GetMapping("/{productId}")
-    public Product getProductById(@PathVariable long productId) {
+    public ProductDTO getProductById(@PathVariable long productId) {
         return productService.getProductById(productId);
     }
 
     @GetMapping("/category/{categoryId}")
-    public List<Product> getProductsByCategoryId(@PathVariable long categoryId) {
+    public List<ProductDTO> getProductsByCategoryId(@PathVariable long categoryId) {
         return productService.getProductsByCategoryId(categoryId);
     }
 }
