@@ -1,6 +1,5 @@
 package com.storeapp.store.controllers;
 
-import com.storeapp.store.services.AddressService;
 import com.storeapp.store.services.ImageService;
 import com.storeapp.store.utils.TestData;
 import org.junit.jupiter.api.Test;
@@ -8,6 +7,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.HttpStatus;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -30,9 +30,10 @@ public class ImageControllerTest {
 
     @Test
     void getAllImageTestReturnsNull() {
-        Mockito.when(imageService.getAllImages()).thenReturn(null);
+        Mockito.when(imageService.getAllImages()).thenReturn(TestData.imageDTOEmpty);
         var actual = imageController.getAllImages();
-        assertNull(actual.getBody());
+        assertEquals(HttpStatus.NOT_FOUND, actual.getStatusCode());
+
     }
 
     @Test
@@ -52,6 +53,14 @@ public class ImageControllerTest {
     }
 
     @Test
+    void getImagesByProductTestInvalidImageName() {
+        var actual = imageController.getImagesByProduct(-1l);
+
+        assertEquals(HttpStatus.BAD_REQUEST, actual.getStatusCode());
+        assertEquals("The image product id must be positive number.", actual.getHeaders().getFirst("Error"));
+    }
+
+    @Test
     void getImageInfoByNameTest() {
         var expected = TestData.imageDTO;
 
@@ -62,8 +71,16 @@ public class ImageControllerTest {
 
     @Test
     void getImageInfoByNameTestReturnsNull() {
-        Mockito.when(imageService.getImageByProductId(0l)).thenReturn(null);
-        var actual = imageController.getImagesByProduct(0l);
+        Mockito.when(imageService.getInfoByImageByName("tree")).thenReturn(null);
+        var actual = imageController.getImageInfoByName("tree");
         assertNull(actual.getBody());
+    }
+
+    @Test
+    void getImageInfoByNameTestInvalidImageName() {
+        var actual = imageController.getImageInfoByName("");
+
+        assertEquals(HttpStatus.BAD_REQUEST, actual.getStatusCode());
+        assertEquals("The image name must not be empty string.", actual.getHeaders().getFirst("Error"));
     }
 }
