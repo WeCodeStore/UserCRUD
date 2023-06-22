@@ -21,8 +21,10 @@ public class UserService {
     public List<AdminUserDTO> getAllUsers() {
         var dtoList = new ArrayList<AdminUserDTO>();
         var list = userRepository.findAll();
-        for (User user : list) {
-            dtoList.add(modelMapper.map(user, AdminUserDTO.class));
+        if(list.size() > 0) {
+            for (User user : list) {
+                dtoList.add(modelMapper.map(user, AdminUserDTO.class));
+            }
         }
         return dtoList;
     }
