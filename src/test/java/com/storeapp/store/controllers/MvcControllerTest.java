@@ -1,8 +1,12 @@
 package com.storeapp.store.controllers;
 
 import com.storeapp.store.models.AddressDTO;
+
+import com.storeapp.store.models.RoleDTO;
+
 import com.storeapp.store.models.ImageDTO;
 import com.storeapp.store.services.ImageService;
+
 import com.storeapp.store.utils.TypeReferenceMapper;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -46,6 +50,23 @@ public class MvcControllerTest {
     }
 
     @Test
+    void getAllRolesTest() throws Exception {
+        var requestBuilder = MockMvcRequestBuilders.get("/store/roles").accept(MediaType.APPLICATION_JSON);
+        var result = mockMvc.perform(requestBuilder).andExpect(status().isOk()).andReturn();
+        var resultString = result.getResponse().getContentAsString();
+        var roleDTOList = TypeReferenceMapper.deserializeJsonStringToList(resultString, RoleDTO.class);
+        var requestUri = result.getRequest().getRequestURI();
+
+        assertNotNull(result);
+        assertFalse(roleDTOList.isEmpty());
+        assertEquals("/store/roles", requestUri);
+        assertThat(roleDTOList.get(0)).isInstanceOf(RoleDTO.class);
+        // checking for actual values may not be efficient when DB changes
+        assertEquals("admin", roleDTOList.get(0).getName());
+        assertEquals(3, roleDTOList.size());
+    }
+
+   @Test
     void getAllImagesTest() throws Exception {
         var requestBuilder = MockMvcRequestBuilders.get("/store/image/all").accept(MediaType.APPLICATION_JSON);
         var result = mockMvc.perform(requestBuilder).andExpect(status().isOk()).andReturn();
@@ -63,16 +84,16 @@ public class MvcControllerTest {
     }
 
   // @Test
-    void postImageTest() throws Exception {
-        MockMultipartFile  uploadFile = new MockMultipartFile("image", "brush.jpg", "image/jpg", new byte[1]);
-        var result = mockMvc.perform(MockMvcRequestBuilders.multipart("/store/image/upload/file")
-                       .file("image", uploadFile.getBytes())
-                       .param("productId", "1")
-                       .characterEncoding("UTF-8"))
-                       .andExpect(status().isOk()).andReturn();
-
-        assertEquals("Image uploaded successfully: ", result.getResponse().getContentAsString());
-    }
+//    void postImageTest() throws Exception {
+//        MockMultipartFile  uploadFile = new MockMultipartFile("image", "brush.jpg", "image/jpg", new byte[1]);
+//        var result = mockMvc.perform(MockMvcRequestBuilders.multipart("/store/image/upload/file")
+//                       .file("image", uploadFile.getBytes())
+//                       .param("productId", "1")
+//                       .characterEncoding("UTF-8"))
+//                       .andExpect(status().isOk()).andReturn();
+//
+//        assertEquals("Image uploaded successfully: ", result.getResponse().getContentAsString());
+//    }
 
     @Test
     void getImageInfoByNameTest() throws Exception {

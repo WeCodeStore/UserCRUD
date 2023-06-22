@@ -1,6 +1,6 @@
 package com.storeapp.store.controllers;
 
-import com.storeapp.store.models.Role;
+import com.storeapp.store.models.RoleDTO;
 import com.storeapp.store.services.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +17,7 @@ public class RoleController {
     RoleService roleService;
 
     @GetMapping("")
-    public List<Role> getAllRoles() {
+    public List<RoleDTO> getAllRoles() {
         var roles = roleService.getAllRoles();
         return roles;
     }
