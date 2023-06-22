@@ -26,7 +26,7 @@ public class Image {
     @ManyToOne(fetch=FetchType.EAGER)
     @JoinColumn(name="productId")
     @JsonIgnore
-    public Product product;
+    private Product product;
 
     @Override
     public boolean equals(Object o){
