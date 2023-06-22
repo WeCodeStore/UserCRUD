@@ -33,6 +33,7 @@ public class User {
     private String username;
     private String email;
 
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "shippingAddressId", referencedColumnName = "addressId")
     private Address shippingAddress;
@@ -46,4 +47,8 @@ public class User {
 //    @OneToMany(mappedBy = "user")
 //    @JsonIgnore
 //    private List<Review> reviewList;
+
+    public User(String username) {
+        this.username = username;
+    }
 }

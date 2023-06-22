@@ -1,6 +1,7 @@
 package com.storeapp.store.controllers;
 
 import com.storeapp.store.models.AddressDTO;
+import com.storeapp.store.models.RoleDTO;
 import com.storeapp.store.utils.TypeReferenceMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,4 +39,22 @@ public class MvcControllerTest {
         assertEquals("Charlotte", addressDTOList.get(0).getCity());
         assertEquals(10, addressDTOList.size());
     }
-}
+
+    @Test
+    void getAllRolesTest() throws Exception {
+        var requestBuilder = MockMvcRequestBuilders.get("/store/roles").accept(MediaType.APPLICATION_JSON);
+        var result = mockMvc.perform(requestBuilder).andExpect(status().isOk()).andReturn();
+        var resultString = result.getResponse().getContentAsString();
+        var roleDTOList = TypeReferenceMapper.deserializeJsonStringToList(resultString, RoleDTO.class);
+        var requestUri = result.getRequest().getRequestURI();
+
+        assertNotNull(result);
+        assertFalse(roleDTOList.isEmpty());
+        assertEquals("/store/roles", requestUri);
+        assertThat(roleDTOList.get(0)).isInstanceOf(RoleDTO.class);
+        // checking for actual values may not be efficient when DB changes
+        assertEquals("admin", roleDTOList.get(0).getName());
+        assertEquals(3, roleDTOList.size());
+    }
+
+    }
