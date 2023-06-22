@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
@@ -56,6 +57,24 @@ public class MvcControllerTest {
         assertEquals("brush", imageDTOList.get(0).getName());
         assertEquals(6, imageDTOList.size());
     }
+
+   /* @Test
+    void postImageTest() throws Exception {
+        MockMultipartFile  uploadFile = new MockMultipartFile("image", new byte[1]);
+
+       // var requestBuilder = MockMvcRequestBuilders.fileUpload("/store/image/info/brush").accept(MediaType.APPLICATION_JSON);
+        var result = mockMvc.perform(requestBuilder).andExpect(status().isOk()).andReturn();
+        var resultString = result.getResponse().getContentAsString();
+        var imageDTO = TypeReferenceMapper.deserializeJsonStringToObject(resultString, ImageDTO.class);
+        var requestUri = result.getRequest().getRequestURI();
+
+        assertNotNull(result);
+
+        assertEquals("/store/image/info/brush", requestUri);
+        assertThat(imageDTO).isInstanceOf(ImageDTO.class);
+        // checking for actual values may not be efficient when DB changes
+        assertEquals("brush", imageDTO.getName());
+    }  */
 
     @Test
     void getImageInfoByNameTest() throws Exception {

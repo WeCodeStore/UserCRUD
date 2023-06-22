@@ -56,7 +56,7 @@ public class ImageService {
     public ImageDTO getInfoByImageByName(String name) {
         Optional<Image> dbImage = imageDataRepository.findByName(name);
 
-        if (dbImage.isPresent()) {
+        if (dbImage != null && dbImage.isPresent()) {
             return modelMapper.map(dbImage.get(), ImageDTO.class);
         }
 
@@ -92,7 +92,7 @@ public class ImageService {
         Optional<Image> dbImage = imageDataRepository.findByName(name);
         byte[] image = null;
 
-        if (dbImage.isPresent() && dbImage.get().getImageData() != null) {
+        if (dbImage != null && dbImage.isPresent() && dbImage.get().getImageData() != null) {
             image = ImageUtil.decompressImage(dbImage.get().getImageData());
         }
         return image;
