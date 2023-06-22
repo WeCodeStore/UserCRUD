@@ -33,4 +33,5 @@ class AddressControllerTest {
         var actual = addressController.getAllAddresses();
         assertNull(actual);
     }
+
 }
