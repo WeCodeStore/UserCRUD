@@ -36,8 +36,8 @@ public class ReviewService {
         return dtoList;
     }
 
-    public List<ReviewDTO> getReviewsByUser(int productId) {
-        var reviewList = reviewRepository.findByUserId(productId);
+    public List<ReviewDTO> getReviewsByUser(int userId) {
+        var reviewList = reviewRepository.findByUserId(userId);
         var dtoList = new ArrayList<ReviewDTO>();
         for(Review review: reviewList) {
             dtoList.add(modelMapper.map(review, ReviewDTO.class));

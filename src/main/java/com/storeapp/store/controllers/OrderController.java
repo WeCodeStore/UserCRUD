@@ -1,6 +1,7 @@
 package com.storeapp.store.controllers;
 
 import com.storeapp.store.models.Order;
+import com.storeapp.store.models.OrderDTO;
 import com.storeapp.store.services.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +17,7 @@ public class OrderController {
     OrderService orderService;
 
     @GetMapping("")
-    public List<Order> getAllOrders(){
+    public List<OrderDTO> getAllOrders(){
         return orderService.getAllOrders();
     }
 
