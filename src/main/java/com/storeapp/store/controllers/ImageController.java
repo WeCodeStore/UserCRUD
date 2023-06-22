@@ -34,6 +34,9 @@ public class ImageController {
 
     @GetMapping("/info/{name}")
     public ResponseEntity<ImageDTO>  getImageInfoByName(@PathVariable("name") String name){
+        if (name.isBlank() ){
+            return ResponseEntity.badRequest().header("Error", "The image name must not be empty string.").build();
+        }
         ImageDTO image = imageDataService.getInfoByImageByName(name);
 
         return ResponseEntity.status(HttpStatus.OK)
@@ -43,32 +46,33 @@ public class ImageController {
     @GetMapping("/byproduct/{productId}")
     public ResponseEntity<List<ImageDTO>>  getImagesByProduct(@PathVariable("productId") Long productId){
         if (productId <= 0){
-            return ResponseEntity.badRequest().header("Error", "The image product id must be positive number. ").build();
+            return ResponseEntity.badRequest().header("Error", "The image product id must be positive number.").build();
         }
-            List<ImageDTO> lstImageDTO = imageDataService.getImageByProductId(productId);
-            if (lstImageDTO != null) {
-                return ResponseEntity.status(HttpStatus.OK)
-                        .body(lstImageDTO);
-            }
-            else{
-                return ResponseEntity.badRequest().header("Error", "Image does not exist").build();
-            }
+
+        List<ImageDTO> lstImageDTO = imageDataService.getImageByProductId(productId);
+        if (lstImageDTO != null) {
+           return ResponseEntity.status(HttpStatus.OK).body(lstImageDTO);
+        } else {
+           return ResponseEntity.badRequest().header("Error", "Image does not exist").build();
+        }
     }
 
     @GetMapping("/all")
     public ResponseEntity<List<ImageDTO>>  getAllImages(){
-
         List<ImageDTO> lstImageDTO = imageDataService.getAllImages();
-        if (lstImageDTO != null) {
+
+        if (lstImageDTO.size() > 0) {
             return ResponseEntity.status(HttpStatus.OK)
                     .body(lstImageDTO);
         }
         else{
-            return ResponseEntity.badRequest().header("Error", "No Images").build();
+            return ResponseEntity.notFound().header("Error", "No Images").build();
         }
     }
 
-    @GetMapping("/{name}")
+
+    //This similar to getImageInfoByName() which just return image instead of object
+   /* @GetMapping("/{name}")
     public ResponseEntity<byte[]>  getImageByName(@PathVariable("name") String name){
         if (name == null || name.isEmpty()){
             return ResponseEntity.badRequest().header("Error", "The image name should not be empty. ").build();
@@ -78,5 +82,5 @@ public class ImageController {
         return ResponseEntity.status(HttpStatus.OK)
                 .contentType(MediaType.valueOf("image/png"))
                 .body(image);
-    }
+    }*/
 }

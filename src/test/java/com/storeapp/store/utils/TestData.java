@@ -21,5 +21,9 @@ public class TestData {
     public static List<Product> productList = new ArrayList<>(Collections.singletonList(product));
     public static ProductDTO productDTO = new ProductDTO(3L, "Chemical", 12.9, 45, "Z5679", "Image", "Pop Music",  "Music");
     public static List<ProductDTO> productDtoList = new ArrayList<>(Collections.singletonList(productDTO));
+    public static Image image = new Image(1l, "tree", "png", null, "http://commondatastorage.googleapis.com/codeskulptor-demos/riceracer_assets/img/tree_2.png", product);
+    public static ImageDTO imageDTO = new ImageDTO(1l, "tree", "png", null, "http://commondatastorage.googleapis.com/codeskulptor-demos/riceracer_assets/img/tree_2.png");
+    public static List<ImageDTO> imageDTOList = new ArrayList<>(Collections.singletonList(imageDTO));
+    public static List<ImageDTO> imageDTOEmpty  = new ArrayList<ImageDTO>();
 
 }
