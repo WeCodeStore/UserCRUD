@@ -8,6 +8,9 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
+import org.springframework.mock.web.MockMultipartFile;
+
+import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -20,6 +23,19 @@ public class ImageControllerTest {
     @InjectMocks
     ImageController imageController;
 
+
+    @Test
+    void postImageTest() {
+        MockMultipartFile uploadFile = new MockMultipartFile("image", "brush.jpg", "image/jpg", new byte[1]);
+        var expected = TestData.imageDTOList;
+        try {
+            Mockito.when(imageService.uploadImage(uploadFile, 1l)).thenReturn("Image uploaded successfully: brush.jpg");
+            var actual = imageController.uploadImage(uploadFile, 1l);
+            assertEquals("Image uploaded successfully: brush.jpg", actual.getBody().toString());
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
+    }
     @Test
     void getAllImageTest() {
         var expected = TestData.imageDTOList;

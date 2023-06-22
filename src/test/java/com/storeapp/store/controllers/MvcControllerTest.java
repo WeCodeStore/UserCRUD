@@ -2,15 +2,19 @@ package com.storeapp.store.controllers;
 
 import com.storeapp.store.models.AddressDTO;
 import com.storeapp.store.models.ImageDTO;
+import com.storeapp.store.services.ImageService;
 import com.storeapp.store.utils.TypeReferenceMapper;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.MockMultipartHttpServletRequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.web.context.WebApplicationContext;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -58,23 +62,17 @@ public class MvcControllerTest {
         assertEquals(6, imageDTOList.size());
     }
 
-   /* @Test
+  // @Test
     void postImageTest() throws Exception {
-        MockMultipartFile  uploadFile = new MockMultipartFile("image", new byte[1]);
+        MockMultipartFile  uploadFile = new MockMultipartFile("image", "brush.jpg", "image/jpg", new byte[1]);
+        var result = mockMvc.perform(MockMvcRequestBuilders.multipart("/store/image/upload/file")
+                       .file("image", uploadFile.getBytes())
+                       .param("productId", "1")
+                       .characterEncoding("UTF-8"))
+                       .andExpect(status().isOk()).andReturn();
 
-       // var requestBuilder = MockMvcRequestBuilders.fileUpload("/store/image/info/brush").accept(MediaType.APPLICATION_JSON);
-        var result = mockMvc.perform(requestBuilder).andExpect(status().isOk()).andReturn();
-        var resultString = result.getResponse().getContentAsString();
-        var imageDTO = TypeReferenceMapper.deserializeJsonStringToObject(resultString, ImageDTO.class);
-        var requestUri = result.getRequest().getRequestURI();
-
-        assertNotNull(result);
-
-        assertEquals("/store/image/info/brush", requestUri);
-        assertThat(imageDTO).isInstanceOf(ImageDTO.class);
-        // checking for actual values may not be efficient when DB changes
-        assertEquals("brush", imageDTO.getName());
-    }  */
+        assertEquals("Image uploaded successfully: ", result.getResponse().getContentAsString());
+    }
 
     @Test
     void getImageInfoByNameTest() throws Exception {
@@ -125,7 +123,7 @@ public class MvcControllerTest {
         assertEquals("The image product id must be positive number.", result.getResponse().getHeader("error").toString());
     }
 
-  /*  @Test
+   // @Test
     void getImagesByNameTest() throws Exception {
         var requestBuilder = MockMvcRequestBuilders.get("/store/image/brush").accept(MediaType.APPLICATION_JSON);
         var result = mockMvc.perform(requestBuilder).andExpect(status().isOk()).andReturn();
@@ -140,6 +138,6 @@ public class MvcControllerTest {
         // checking for actual values may not be efficient when DB changes
         assertEquals("brush", imageDTOList.get(0).getName());
         assertEquals(5, imageDTOList.size());
-    } */
+    }
 
 }

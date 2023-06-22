@@ -10,6 +10,9 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.mock.web.MockMultipartFile;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Optional;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -22,6 +25,26 @@ public class ImageServiceTest {
 
     @InjectMocks
     ImageService imageService;
+
+
+    @Test
+    void postImageTest() {
+        byte[] bytes = {1, 3,0,5};
+        MockMultipartFile saveFile = new MockMultipartFile("image", "brush.jpg", "image/jpg", bytes);
+
+        Image saveImage = Image.builder()
+                .name(saveFile.getOriginalFilename())
+                .type(saveFile.getContentType())
+                .imageData(ImageUtil.compressImage(bytes)).build();
+        try {
+            Mockito.when(imageRepository.save(saveImage)).thenReturn(saveImage);
+            var actual = imageService.uploadImage(saveFile, 1l);
+            assertEquals("Image uploaded successfully: brush.jpg", actual);
+
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     @Test
     void getAllImageTest() {
