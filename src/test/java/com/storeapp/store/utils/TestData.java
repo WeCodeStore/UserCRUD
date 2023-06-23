@@ -15,6 +15,7 @@ public class TestData {
     public static List<RoleDTO> roleDTOList = new ArrayList<RoleDTO>(List.of(roleDTO));
     public static User user = new User(roleList,1L, "John", "Smith", "jsmith", "jsmith@email.com", null, null, "123456798");
     public static AdminUserDTO adminUserDTO = new AdminUserDTO(1L,"John", "Smith", "jsmith", "jsmith@email.com", null, null, "123456798", null);
+    public static List<AdminUserDTO> adminUserDTOList = new ArrayList(List.of(adminUserDTO));
     public static Address address = new Address(1L, "Charlotte", "123 New Street", "NC", "28092", "USA", user, user);
     public static List<Address> addressList = new ArrayList<>(Collections.singletonList(address));
     public static AddressDTO addressDto = new AddressDTO(1L, "Charlotte", "123 New Street", "NC", "28092", "USA");

@@ -1,10 +1,6 @@
 package com.storeapp.store.controllers;
 
-import com.storeapp.store.models.AddressDTO;
-import com.storeapp.store.models.ReviewDTO;
-import com.storeapp.store.models.ProductDTO;
-import com.storeapp.store.models.ImageDTO;
-import com.storeapp.store.models.RoleDTO;
+import com.storeapp.store.models.*;
 import com.storeapp.store.utils.TypeReferenceMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +27,6 @@ public class MvcControllerTest {
         var result = mockMvc.perform(requestBuilder).andExpect(status().isOk()).andReturn();
         var resultString = result.getResponse().getContentAsString();
         var addressDTOList = TypeReferenceMapper.deserializeJsonStringToList(resultString, AddressDTO.class);
-//        var address = TypeReferenceMapper.deserializeJsonStringToObject("{\"id\":1,\"city\":\"Charlotte\",\"street\":\"123 Seezam street\",\"state\":\"NC\",\"postalCode\":\"28092\",\"country\":\"USA\"}", AddressDTO.class);
         var requestUri = result.getRequest().getRequestURI();
 
         assertNotNull(result);
@@ -155,6 +150,55 @@ public class MvcControllerTest {
         // checking for actual values may not be efficient when DB changes
         assertEquals("admin", roleDTOList.get(0).getName());
         assertEquals(3, roleDTOList.size());
+    }
+
+    @Test
+    void getAllUsersTest() throws Exception {
+        var requestBuilder = MockMvcRequestBuilders.get("/store/users").accept(MediaType.APPLICATION_JSON);
+        var result = mockMvc.perform(requestBuilder).andExpect(status().isOk()).andReturn();
+        var resultString = result.getResponse().getContentAsString();
+        var adminUserDTOList = TypeReferenceMapper.deserializeJsonStringToList(resultString, AdminUserDTO.class);
+        var requestUri = result.getRequest().getRequestURI();
+
+        assertNotNull(result);
+        assertFalse(adminUserDTOList.isEmpty());
+        assertEquals("/store/users", requestUri);
+        assertThat(adminUserDTOList.get(0)).isInstanceOf(AdminUserDTO.class);
+        // checking for actual values may not be efficient when DB changes
+        assertEquals("John", adminUserDTOList.get(0).getFirstName());
+        assertEquals(8, adminUserDTOList.size());
+    }
+
+    @Test
+    void getUserById() throws Exception {
+        var requestBuilder = MockMvcRequestBuilders.get("/store/users/1").accept(MediaType.APPLICATION_JSON);
+        var result = mockMvc.perform(requestBuilder).andExpect(status().isOk()).andReturn();
+        var resultString = result.getResponse().getContentAsString();
+        var adminUserDTO = TypeReferenceMapper.deserializeJsonStringToObject(resultString, AdminUserDTO.class);
+        var requestUri = result.getRequest().getRequestURI();
+
+        assertNotNull(result);
+        assertEquals("/store/users/1", requestUri);
+        assertThat(adminUserDTO).isInstanceOf(AdminUserDTO.class);
+        assertEquals("John",adminUserDTO.getFirstName());
+    }
+
+
+    @Test
+    void getAllCategoryTest() throws Exception {
+        var requestBuilder = MockMvcRequestBuilders.get("/store/categories").accept(MediaType.APPLICATION_JSON);
+        var result = mockMvc.perform(requestBuilder).andExpect(status().isOk()).andReturn();
+        var resultString = result.getResponse().getContentAsString();
+        var categoryDTOList = TypeReferenceMapper.deserializeJsonStringToList(resultString, CategoryDTO.class);
+        var requestUri = result.getRequest().getRequestURI();
+
+        assertNotNull(result);
+        assertFalse(categoryDTOList.isEmpty());
+        assertEquals("/store/categories", requestUri);
+        assertThat(categoryDTOList.get(0)).isInstanceOf(CategoryDTO.class);
+        // checking for actual values may not be efficient when DB changes
+        assertEquals("Clothes",categoryDTOList.get(0).getName());
+        assertEquals(10, categoryDTOList.size());
     }
 
    @Test
