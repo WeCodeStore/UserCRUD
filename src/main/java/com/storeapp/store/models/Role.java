@@ -26,4 +26,9 @@ public class Role {
             joinColumns = @JoinColumn(name = "role_Id", referencedColumnName = "roleId"),
             inverseJoinColumns = @JoinColumn(name = "user_Id", referencedColumnName = "userId"))
     private List<User> userList;
+
+    public Role(String name) {
+        this.name = name;
+    }
+
 }
