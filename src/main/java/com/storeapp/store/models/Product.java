@@ -51,4 +51,8 @@ public class Product {
     public void removeImage(Image image){
         images.remove(image);
     }
+
+    public Product(String name){
+        this.name=name;
+    }
 }

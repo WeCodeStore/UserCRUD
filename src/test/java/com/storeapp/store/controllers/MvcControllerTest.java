@@ -294,4 +294,21 @@ public class MvcControllerTest {
         assertEquals("brush", imageDTOList.get(0).getName());
         assertEquals(5, imageDTOList.size());
     }
+
+    @Test
+    void getAllOrdersTest() throws Exception{
+        var requestBuilder = MockMvcRequestBuilders.get("/store/orders").accept(MediaType.APPLICATION_JSON);
+        var result = mockMvc.perform(requestBuilder).andExpect(status().isOk()).andReturn();
+        var resultString = result.getResponse().getContentAsString();
+        var orderDTOList = TypeReferenceMapper.deserializeJsonStringToList(resultString, OrderDTO.class);
+        var requestUri = result.getRequest().getRequestURI();
+
+        assertNotNull(result);
+        assertFalse(orderDTOList.isEmpty());
+        assertEquals("/store/orders", requestUri);
+        assertThat(orderDTOList.get(0)).isInstanceOf(OrderDTO.class);
+        // checking for actual values may not be efficient when DB changes
+        assertEquals(578446, orderDTOList.get(0).getOrderNumber());
+        assertEquals(1, orderDTOList.size());
+    }
 }
