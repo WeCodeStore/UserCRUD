@@ -24,7 +24,7 @@ public class ProductController {
 
     @GetMapping("/page")
     public ResponseEntity<PageOfProductsDTO<List<ProductDTO>>> getPaginatedProduct(@RequestParam(value="pageNumber") int pageNumber,
-                                                                                   @RequestParam(value="pageSize", defaultValue = "25") int pageSize) {
+                                                                                   @RequestParam(value="pageSize", defaultValue = "9") int pageSize) {
         if (pageNumber < 0 || pageSize <= 0) {
             return ResponseEntity.badRequest().build();
         }
