@@ -40,4 +40,6 @@ public class TestData {
     public static ImageDTO imageDTO = new ImageDTO(1l, "tree", "png", null, "http://commondatastorage.googleapis.com/codeskulptor-demos/riceracer_assets/img/tree_2.png");
     public static List<ImageDTO> imageDTOList = new ArrayList<>(Collections.singletonList(imageDTO));
     public static List<ImageDTO> imageDTOEmpty  = new ArrayList<ImageDTO>();
+
+    public static PageOfProductsDTO<List<ProductDTO>> pageOfProductDTO = new PageOfProductsDTO<>(productDtoList, true, 15);
 }

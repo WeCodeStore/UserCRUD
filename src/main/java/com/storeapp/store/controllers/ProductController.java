@@ -1,13 +1,12 @@
 package com.storeapp.store.controllers;
 
+import com.storeapp.store.models.PageOfProductsDTO;
 import com.storeapp.store.models.Product;
 import com.storeapp.store.models.ProductDTO;
 import com.storeapp.store.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,6 +20,15 @@ public class ProductController {
     @GetMapping("")
     public List<ProductDTO> getAllProducts() {
         return productService.getAllProducts();
+    }
+
+    @GetMapping("/page")
+    public ResponseEntity<PageOfProductsDTO<List<ProductDTO>>> getPaginatedProduct(@RequestParam(value="pageNumber") int pageNumber,
+                                                                                   @RequestParam(value="pageSize", defaultValue = "9") int pageSize) {
+        if (pageNumber < 0 || pageSize <= 0) {
+            return ResponseEntity.badRequest().build();
+        }
+        return ResponseEntity.ok(productService.getProductByPage(pageNumber, pageSize));
     }
 
     @GetMapping("/{productId}")

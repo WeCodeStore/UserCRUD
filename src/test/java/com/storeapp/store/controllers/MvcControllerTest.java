@@ -3,14 +3,19 @@ package com.storeapp.store.controllers;
 import com.storeapp.store.models.*;
 import com.storeapp.store.utils.TypeReferenceMapper;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -103,6 +108,18 @@ public class MvcControllerTest {
         assertThat(productDTOList.get(0)).isInstanceOf(ProductDTO.class);
         assertEquals("bear", productDTOList.get(0).getName());
         assertEquals(15, productDTOList.size());
+    }
+
+    @Test
+    void getPaginatedProductSuccessTest() throws Exception {
+
+        var requestBuilder = MockMvcRequestBuilders.get("/store/products/page").param("pageNumber","0").accept(MediaType.APPLICATION_JSON);
+        var result = mockMvc.perform(requestBuilder).andExpect(status().isOk()).andReturn();
+        var resultString = result.getResponse().getContentAsString();
+       // var productPageDTOList = TypeReferenceMapper.deserializeJsonStringToList(resultString, PageOfProductsDTO<List<ProductDTO>>.class);
+        var requestUri = result.getRequest().getRequestURI();
+
+        assertNotNull(result);
     }
 
     @Test
