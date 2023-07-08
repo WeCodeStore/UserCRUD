@@ -18,6 +18,8 @@ public class ProductDTO {
     private String image;
     private String description;
     private String category;
+    private double reviewRate;
+    private long totalReviews;
 
     public void setCategory(Category category) {
         var catName = category.getName();

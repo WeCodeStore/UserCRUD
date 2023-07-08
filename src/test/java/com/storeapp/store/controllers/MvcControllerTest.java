@@ -123,6 +123,18 @@ public class MvcControllerTest {
     }
 
     @Test
+    void getPaginatedProductByCategorySuccessTest() throws Exception {
+
+        var requestBuilder = MockMvcRequestBuilders.get("/store/products/category/page").param("categoryId","4").param("pageNumber","0").accept(MediaType.APPLICATION_JSON);
+        var result = mockMvc.perform(requestBuilder).andExpect(status().isOk()).andReturn();
+        var resultString = result.getResponse().getContentAsString();
+        // var productPageDTOList = TypeReferenceMapper.deserializeJsonStringToList(resultString, PageOfProductsDTO<List<ProductDTO>>.class);
+        var requestUri = result.getRequest().getRequestURI();
+
+        assertNotNull(result);
+    }
+
+    @Test
     void getProductById() throws Exception {
         var requestBuilder = MockMvcRequestBuilders.get("/store/products/1").accept(MediaType.APPLICATION_JSON);
         var result = mockMvc.perform(requestBuilder).andExpect(status().isOk()).andReturn();

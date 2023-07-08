@@ -39,6 +39,17 @@ public class ProductService {
         return pagination(pageOfProduct);
     }
 
+    public PageOfProductsDTO<List<ProductDTO>> getProductByCategoryByPage(long categoryId, int pageNum, int pageSize) {
+        // Paging properties
+        Pageable paging = PageRequest.of(pageNum, pageSize);
+        // Fetching data from repository as pageable
+        Page<Product> pageOfProduct = productRepository.findAllByCategoryId(categoryId,paging);
+        if (pageOfProduct == null){
+            return null;
+        }
+        return pagination(pageOfProduct);
+    }
+
 
     public ProductDTO getProductById(long productId) {
         var product = productRepository.findByProductId(productId);

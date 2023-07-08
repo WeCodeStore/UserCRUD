@@ -16,6 +16,7 @@ public class ReviewService {
     @Autowired
     ReviewRepository reviewRepository;
 
+
     ModelMapper modelMapper = new ModelMapper();
 
     public List<ReviewDTO> getAllReviews() {
@@ -34,6 +35,17 @@ public class ReviewService {
             dtoList.add(modelMapper.map(review, ReviewDTO.class));
         }
         return dtoList;
+    }
+
+
+    public Review getReviewsRateByProduct(int productId) {
+        var review = reviewRepository.getReviewRateByProductId(productId);
+
+       // var rev2 =  reviewRepository.findSurveyCount();
+
+       // var review2 = reviewRepository.findSurveyCount();
+
+        return review;
     }
 
     public List<ReviewDTO> getReviewsByUser(int userId) {

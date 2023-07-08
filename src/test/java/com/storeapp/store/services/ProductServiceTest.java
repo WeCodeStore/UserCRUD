@@ -48,6 +48,15 @@ public class ProductServiceTest {
     }
 
     @Test
+    void getProductByCategoryByPageSucessTest() throws Exception {
+        List<Product> testList = TestData.productList;
+        Page<Product> pageOfProducts = new PageImpl<>(testList.subList(0, 1));
+        Mockito.when(productRepository.findAllByCategoryId(anyLong(),(Pageable) any())).thenReturn(pageOfProducts);
+        PageOfProductsDTO<List<ProductDTO>> productPage = productService.getProductByCategoryByPage(1, 0, 1);
+        assertEquals(1L, productPage.getTotalElements(), "test");
+    }
+
+    @Test
     void getProductByIdTest() {
         Mockito.when(productRepository.findByProductId(anyLong())).thenReturn(TestData.product);
         var actual = productService.getProductById(1L);
