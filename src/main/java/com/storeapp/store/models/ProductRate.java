@@ -8,8 +8,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 
-
-
 public class ProductRate {
     private double rates;
     private long count;

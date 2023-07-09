@@ -22,6 +22,7 @@ public class ProductController {
         return productService.getAllProducts();
     }
 
+
     @GetMapping("/page")
     public ResponseEntity<PageOfProductsDTO<List<ProductDTO>>> getPaginatedProduct(@RequestParam(value="pageNumber") int pageNumber,
                                                                                    @RequestParam(value="pageSize", defaultValue = "9") int pageSize) {

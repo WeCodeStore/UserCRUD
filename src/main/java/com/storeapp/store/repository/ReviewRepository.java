@@ -12,20 +12,18 @@ import java.util.List;
 
 @Repository
 public interface ReviewRepository extends JpaRepository<Review, Integer> {
-    List<Review> findByProductId(int id);
+    List<Review> findByProductId(long id);
 
     List<Review> findByUserId(int userId);
     @Transactional
-    /*SELECT 1 as ID, '' AS COMMENT, COUNT(ID) as ID, AVG(RATING) as RATING
-    FROM REVIEW where PRODUCTID = 1 GROUP BY PRODUCTID  */
     @Query (value = "Select  '' as COMMENT, avg(rating) AS rating, count(id) as id, 1 as userId, productId from review r where r.productId = :id group by r.productId", nativeQuery = true)
     Review getReviewRateByProductId( @Param("id") long  id);
 
 
-  /* @Query("SELECT " +
-            "    new com.storeapp.store.models.ProductRate(avg(v.rating) AS Rates, COUNT(v.id)) AS count " +
+ /* @Query("SELECT " +
+            "    new com.storeapp.store.models.ProductRate(avg(v.rating), COUNT(v.id))  " +
             "FROM review AS v GROUP BY v.productId")
-    List<ProductRate> getProductRate(); */
+    List<ProductRate> getProductRate();  */
 
 
   // @Query("SELECT avg(v.RATING) AS rates, COUNT(v.id) AS count FROM review AS v GROUP BY v.PRODUCTID")

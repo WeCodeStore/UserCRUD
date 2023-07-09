@@ -4,6 +4,7 @@ import com.storeapp.store.models.PageOfProductsDTO;
 import com.storeapp.store.models.Product;
 import com.storeapp.store.models.ProductDTO;
 import com.storeapp.store.repository.ProductRepository;
+import com.storeapp.store.repository.ReviewRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -20,15 +21,28 @@ public class ProductService {
     @Autowired
     ProductRepository productRepository;
 
+    @Autowired
+    ReviewRepository reviewRep;
+
     ModelMapper modelMapper = new ModelMapper();
 
     public List<ProductDTO> getAllProducts() {
-        var productList = new ArrayList<ProductDTO>();
+        // var productList = new ArrayList<ProductDTO>();
         var list = productRepository.findAll();
-        for (Product product: list) {
-            productList.add(modelMapper.map(product, ProductDTO.class));
+
+        return productMapToDTO(list);
+
+       /* for (Product product: list) {
+            var tempProdDto=modelMapper.map(product, ProductDTO.class);
+
+            var lstReview = reviewRep.findByProductId(product.getProductId());
+            tempProdDto.setTotalReviews(lstReview.size());
+            tempProdDto.setReviewRate(lstReview.stream().mapToDouble(d -> d.getRating())
+                    .average()
+                    .orElse(0.0));
+            productList.add(tempProdDto);
         }
-        return productList;
+        return productList;  */
     }
 
     public PageOfProductsDTO<List<ProductDTO>> getProductByPage(int pageNum, int pageSize) {
@@ -50,19 +64,28 @@ public class ProductService {
         return pagination(pageOfProduct);
     }
 
-
     public ProductDTO getProductById(long productId) {
         var product = productRepository.findByProductId(productId);
-        return modelMapper.map(product, ProductDTO.class);
+        var tempProdDto = modelMapper.map(product, ProductDTO.class);
+        var lstReview = reviewRep.findByProductId(product.getProductId());
+        tempProdDto.setTotalReviews(lstReview.size());
+        tempProdDto.setReviewRate(lstReview.stream().mapToDouble(d -> d.getRating())
+                .average()
+                .orElse(0.0));
+
+        return tempProdDto;
     }
 
     public List<ProductDTO> getProductsByCategoryId (long categoryId) {
-        var productList = new ArrayList<ProductDTO>();
+       // var productList = new ArrayList<ProductDTO>();
         var list = productRepository.findAllByCategoryId(categoryId);
-        for (Product product: list) {
+
+        return productMapToDTO(list);
+
+        /*for (Product product: list) {
             productList.add(modelMapper.map(product, ProductDTO.class));
         }
-        return productList;
+        return productList; */
     }
 
     private PageOfProductsDTO<List<ProductDTO>> pagination(Page<Product> pageOfProduct) {
@@ -76,9 +99,21 @@ public class ProductService {
 
     private List<ProductDTO> productMapToDTO(List<Product> products) {
         var productDTOList = new ArrayList<ProductDTO>();
-        for (Product product : products) {
-            productDTOList.add(modelMapper.map(product, ProductDTO.class));
+
+        for (Product product: products) {
+            var tempProdDto=modelMapper.map(product, ProductDTO.class);
+            var lstReview = reviewRep.findByProductId(product.getProductId());
+            tempProdDto.setTotalReviews(lstReview.size());
+            tempProdDto.setReviewRate(lstReview.stream().mapToDouble(d -> d.getRating())
+                    .average()
+                    .orElse(0.0));
+            productDTOList.add(tempProdDto);
         }
+
+      /*  for (Product product : products) {
+            productDTOList.add(modelMapper.map(product, ProductDTO.class));
+        }  */
+
         return productDTOList;
     }
 }
