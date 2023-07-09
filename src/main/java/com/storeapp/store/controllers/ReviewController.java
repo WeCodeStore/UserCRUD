@@ -32,7 +32,6 @@ public class ReviewController {
             System.out.println("Invalid ID");
         }
 
-        Review review = reviewService.getReviewsRateByProduct(productId);
         return reviewService.getReviewsByProduct(productId);
     }
 

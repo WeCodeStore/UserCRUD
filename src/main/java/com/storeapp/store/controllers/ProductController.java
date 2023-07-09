@@ -22,7 +22,6 @@ public class ProductController {
         return productService.getAllProducts();
     }
 
-
     @GetMapping("/page")
     public ResponseEntity<PageOfProductsDTO<List<ProductDTO>>> getPaginatedProduct(@RequestParam(value="pageNumber") int pageNumber,
                                                                                    @RequestParam(value="pageSize", defaultValue = "9") int pageSize) {
@@ -43,8 +42,7 @@ public class ProductController {
     }
 
    @GetMapping("/category/page")
-    public ResponseEntity<PageOfProductsDTO<List<ProductDTO>>> getPaginatedProductByCategory( @RequestParam(value="categoryId") long categoryId,@RequestParam(value="pageNumber") int pageNumber,
-                                                                                   @RequestParam(value="pageSize", defaultValue = "9") int pageSize) {
+    public ResponseEntity<PageOfProductsDTO<List<ProductDTO>>> getPaginatedProductByCategory( @RequestParam(value="categoryId") long categoryId,@RequestParam(value="pageNumber") int pageNumber, @RequestParam(value="pageSize", defaultValue = "9") int pageSize) {
         if (pageNumber < 0 || pageSize <= 0) {
             return ResponseEntity.badRequest().build();
         }

@@ -15,9 +15,12 @@ public interface ReviewRepository extends JpaRepository<Review, Integer> {
     List<Review> findByProductId(long id);
 
     List<Review> findByUserId(int userId);
-    @Transactional
+
+    /*
+  @Transactional
     @Query (value = "Select  '' as COMMENT, avg(rating) AS rating, count(id) as id, 1 as userId, productId from review r where r.productId = :id group by r.productId", nativeQuery = true)
     Review getReviewRateByProductId( @Param("id") long  id);
+   */
 
 
  /* @Query("SELECT " +

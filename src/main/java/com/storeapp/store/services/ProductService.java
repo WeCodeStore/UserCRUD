@@ -27,22 +27,9 @@ public class ProductService {
     ModelMapper modelMapper = new ModelMapper();
 
     public List<ProductDTO> getAllProducts() {
-        // var productList = new ArrayList<ProductDTO>();
         var list = productRepository.findAll();
 
         return productMapToDTO(list);
-
-       /* for (Product product: list) {
-            var tempProdDto=modelMapper.map(product, ProductDTO.class);
-
-            var lstReview = reviewRep.findByProductId(product.getProductId());
-            tempProdDto.setTotalReviews(lstReview.size());
-            tempProdDto.setReviewRate(lstReview.stream().mapToDouble(d -> d.getRating())
-                    .average()
-                    .orElse(0.0));
-            productList.add(tempProdDto);
-        }
-        return productList;  */
     }
 
     public PageOfProductsDTO<List<ProductDTO>> getProductByPage(int pageNum, int pageSize) {
@@ -77,15 +64,9 @@ public class ProductService {
     }
 
     public List<ProductDTO> getProductsByCategoryId (long categoryId) {
-       // var productList = new ArrayList<ProductDTO>();
         var list = productRepository.findAllByCategoryId(categoryId);
 
         return productMapToDTO(list);
-
-        /*for (Product product: list) {
-            productList.add(modelMapper.map(product, ProductDTO.class));
-        }
-        return productList; */
     }
 
     private PageOfProductsDTO<List<ProductDTO>> pagination(Page<Product> pageOfProduct) {
@@ -109,10 +90,6 @@ public class ProductService {
                     .orElse(0.0));
             productDTOList.add(tempProdDto);
         }
-
-      /*  for (Product product : products) {
-            productDTOList.add(modelMapper.map(product, ProductDTO.class));
-        }  */
 
         return productDTOList;
     }
