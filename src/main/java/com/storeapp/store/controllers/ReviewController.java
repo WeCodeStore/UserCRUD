@@ -1,7 +1,7 @@
 package com.storeapp.store.controllers;
 
-import com.storeapp.store.models.Review;
 import com.storeapp.store.models.ReviewDTO;
+import com.storeapp.store.repository.ReviewRepository;
 import com.storeapp.store.services.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("store/reviews")
@@ -17,6 +18,9 @@ public class ReviewController {
 
     @Autowired
     ReviewService reviewService;
+
+    @Autowired
+    ReviewRepository rep;
 
     @GetMapping("")
     public List<ReviewDTO> getAllReviews() {
