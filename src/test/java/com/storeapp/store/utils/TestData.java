@@ -33,7 +33,7 @@ public class TestData {
     public static List<Order> orders = new ArrayList<>(Collections.singletonList(order));
     public static Product product = new Product(orders, 3L, "Chemical", 12.9, 45, "Z5679", "Pop Music", new Category("Music"), images);
     public static List<Product> productList = new ArrayList<>(Collections.singletonList(product));
-    public static ProductDTO productDTO = new ProductDTO(3L, "Chemical", 12.9, 45, "Z5679", "Image", "Pop Music",  "Music");
+    public static ProductDTO productDTO = new ProductDTO(3L, "Chemical", 12.9, 45, "Z5679", "Image", "Pop Music",  "Music", 3.5, 10);
     public static List<ProductDTO> productDtoList = new ArrayList<>(Collections.singletonList(productDTO));
     public static Category category = new Category(1L, "Electronics", productList );
     public static List<Category> categoryList = new ArrayList<>(Collections.singletonList(category));

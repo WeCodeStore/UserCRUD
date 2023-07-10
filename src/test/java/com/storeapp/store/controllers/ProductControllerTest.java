@@ -39,6 +39,15 @@ public class ProductControllerTest {
     }
 
     @Test
+    void getProductBYCategoryPageTest() {
+        var expected = TestData.pageOfProductDTO;
+        Mockito.when(productService.getProductByCategoryByPage(1,0, 1)).thenReturn(expected);
+        var actual = productController.getPaginatedProductByCategory(1,0, 1);
+        assertEquals(expected.getTotalElements(), actual.getBody().getTotalElements());
+        assertEquals(expected.getProducts().size(), actual.getBody().getProducts().size());
+    }
+
+    @Test
     void getProductByIdTest() {
         var expected = TestData.productDTO;
         Mockito.when(productService.getProductById(anyLong())).thenReturn(expected);

@@ -40,4 +40,17 @@ public class ProductController {
     public List<ProductDTO> getProductsByCategoryId(@PathVariable long categoryId) {
         return productService.getProductsByCategoryId(categoryId);
     }
+
+   @GetMapping("/category/page")
+    public ResponseEntity<PageOfProductsDTO<List<ProductDTO>>> getPaginatedProductByCategory( @RequestParam(value="categoryId") long categoryId,@RequestParam(value="pageNumber") int pageNumber, @RequestParam(value="pageSize", defaultValue = "9") int pageSize) {
+        if (pageNumber < 0 || pageSize <= 0) {
+            return ResponseEntity.badRequest().build();
+        }
+
+        PageOfProductsDTO<List<ProductDTO>> pageOfProdByCat = productService.getProductByCategoryByPage(categoryId, pageNumber, pageSize);
+        if (pageOfProdByCat == null){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok( pageOfProdByCat);
+    }
 }

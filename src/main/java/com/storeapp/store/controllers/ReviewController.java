@@ -1,5 +1,6 @@
 package com.storeapp.store.controllers;
 
+import com.storeapp.store.models.Review;
 import com.storeapp.store.models.ReviewDTO;
 import com.storeapp.store.services.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,7 @@ public class ReviewController {
         } catch (NumberFormatException e) {
             System.out.println("Invalid ID");
         }
+
         return reviewService.getReviewsByProduct(productId);
     }
 
