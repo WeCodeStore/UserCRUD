@@ -18,7 +18,7 @@ public class ProductDTO {
     private String image;
     private String description;
     private String category;
-    private double reviewRate;
+    private double avgReviewRate;
     private long totalReviews;
 
     public void setCategory(Category category) {

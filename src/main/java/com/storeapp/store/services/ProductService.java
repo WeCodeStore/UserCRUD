@@ -54,11 +54,10 @@ public class ProductService {
     public ProductDTO getProductById(long productId) {
         var product = productRepository.findByProductId(productId);
         var tempProdDto = modelMapper.map(product, ProductDTO.class);
-        var lstReview = reviewRep.findByProductId(product.getProductId());
-        tempProdDto.setTotalReviews(lstReview.size());
-        tempProdDto.setReviewRate(lstReview.stream().mapToDouble(d -> d.getRating())
-                .average()
-                .orElse(0.0));
+        var avgRate = reviewRep.getProductAvgReviewsRate(product.getProductId());
+        var totalReviews = reviewRep.getProductTotalReviews(product.getProductId());
+        tempProdDto.setTotalReviews(totalReviews);
+        tempProdDto.setAvgReviewRate(avgRate== null? 0.0:avgRate);
 
         return tempProdDto;
     }
@@ -83,11 +82,10 @@ public class ProductService {
 
         for (Product product: products) {
             var tempProdDto=modelMapper.map(product, ProductDTO.class);
-            var lstReview = reviewRep.findByProductId(product.getProductId());
-            tempProdDto.setTotalReviews(lstReview.size());
-            tempProdDto.setReviewRate(lstReview.stream().mapToDouble(d -> d.getRating())
-                    .average()
-                    .orElse(0.0));
+            var avgRate = reviewRep.getProductAvgReviewsRate(product.getProductId());
+            var totalReviews = reviewRep.getProductTotalReviews(product.getProductId());
+            tempProdDto.setTotalReviews(totalReviews);
+            tempProdDto.setAvgReviewRate(avgRate== null? 0.0:avgRate);
             productDTOList.add(tempProdDto);
         }
 
