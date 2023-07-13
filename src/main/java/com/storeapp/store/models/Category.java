@@ -20,6 +20,7 @@ public class Category {
     @Column(name="id")
     private long id;
     private String name;
+    private String titleImage;
 
     @JsonIgnore
     @OneToMany(mappedBy = "category")
