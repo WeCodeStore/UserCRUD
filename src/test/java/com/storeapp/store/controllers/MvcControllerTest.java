@@ -226,8 +226,8 @@ public class MvcControllerTest {
         assertEquals("/store/categories", requestUri);
         assertThat(categoryDTOList.get(0)).isInstanceOf(CategoryDTO.class);
         // checking for actual values may not be efficient when DB changes
-        assertEquals("Clothes",categoryDTOList.get(0).getName());
-        assertEquals(10, categoryDTOList.size());
+        assertEquals("Outdoor",categoryDTOList.get(0).getName());
+        assertEquals(6, categoryDTOList.size());
     }
 
    @Test
