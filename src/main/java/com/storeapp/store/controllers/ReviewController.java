@@ -4,6 +4,7 @@ import com.storeapp.store.models.ReviewDTO;
 import com.storeapp.store.repository.ReviewRepository;
 import com.storeapp.store.services.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,30 +24,46 @@ public class ReviewController {
     ReviewRepository rep;
 
     @GetMapping("")
-    public List<ReviewDTO> getAllReviews() {
-        return reviewService.getAllReviews();
+    public ResponseEntity<List<ReviewDTO>> getAllReviews() {
+        var reviews = reviewService.getAllReviews();
+        if (reviews == null || reviews.size() == 0){
+           return  ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(reviews);
     }
 
     @GetMapping("/product/{id}")
-    public List<ReviewDTO> getReviewsByProduct(@PathVariable String id) {
+    public ResponseEntity<List<ReviewDTO>> getReviewsByProduct(@PathVariable String id) {
         int productId = 0;
         try {
             productId = Integer.parseInt(id);
         } catch (NumberFormatException e) {
             System.out.println("Invalid ID");
+            return ResponseEntity.badRequest().header("Error: ", "Invalid product ID.").build();
+        }
+        var reviews = reviewService.getReviewsByProduct(productId);
+
+        if (reviews == null || reviews.size() == 0){
+            return ResponseEntity.notFound().build();
         }
 
-        return reviewService.getReviewsByProduct(productId);
+        return ResponseEntity.ok(reviews);
     }
 
     @GetMapping("/user/{id}")
-    public List<ReviewDTO> getReviewsByUser(@PathVariable String id) {
+    public ResponseEntity<List<ReviewDTO>> getReviewsByUser(@PathVariable String id) {
         int userId = 0;
         try {
             userId = Integer.parseInt(id);
         } catch (NumberFormatException e) {
             System.out.println("Invalid ID");
+            return ResponseEntity.badRequest().header("Error: ", "Invalid product ID.").build();
         }
-        return reviewService.getReviewsByUser(userId);
+        var reviews = reviewService.getReviewsByUser(userId);
+        if (reviews == null || reviews.size() == 0){
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.ok(reviews);
     }
 }

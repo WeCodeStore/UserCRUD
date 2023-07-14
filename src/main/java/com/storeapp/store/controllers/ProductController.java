@@ -19,8 +19,13 @@ public class ProductController {
     ProductService productService;
 
     @GetMapping("")
-    public List<ProductDTO> getAllProducts() {
-        return productService.getAllProducts();
+    public ResponseEntity<List<ProductDTO>> getAllProducts() {
+        var products = productService.getAllProducts();
+        if (products == null || products.size() == 0){
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.ok(products);
     }
 
     @GetMapping("/page")
@@ -33,13 +38,18 @@ public class ProductController {
     }
 
     @GetMapping("/{productId}")
-    public ProductDTO getProductById(@PathVariable long productId) {
-        return productService.getProductById(productId);
+    public ResponseEntity<ProductDTO> getProductById(@PathVariable long productId) {
+       return ResponseEntity.ok(productService.getProductById(productId));
     }
 
     @GetMapping("/category/{categoryId}")
-    public List<ProductDTO> getProductsByCategoryId(@PathVariable long categoryId) {
-        return productService.getProductsByCategoryId(categoryId);
+    public ResponseEntity<List<ProductDTO>> getProductsByCategoryId(@PathVariable long categoryId) {
+        var lstProductDTO = productService.getProductsByCategoryId(categoryId);
+        
+        if (lstProductDTO == null || lstProductDTO.size() == 0){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(lstProductDTO);
     }
 
    @GetMapping("/category/page")

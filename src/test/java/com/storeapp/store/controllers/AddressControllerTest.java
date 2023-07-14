@@ -7,6 +7,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.HttpStatus;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -24,14 +25,14 @@ class AddressControllerTest {
         var expected = TestData.addressDtoList;
         Mockito.when(addressService.getAllAddresses()).thenReturn(expected);
         var actual = addressController.getAllAddresses();
-        assertEquals(expected.get(0).getCity(), actual.get(0).getCity());
+        assertEquals(expected.get(0).getCity(), actual.getBody().get(0).getCity());
     }
 
     @Test
     void getAllAddressesTestReturnsNull() {
         Mockito.when(addressService.getAllAddresses()).thenReturn(null);
         var actual = addressController.getAllAddresses();
-        assertNull(actual);
+        assertEquals(HttpStatus.NOT_FOUND, actual.getStatusCode());
     }
 
 }

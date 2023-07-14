@@ -3,6 +3,7 @@ package com.storeapp.store.controllers;
 import com.storeapp.store.models.CategoryDTO;
 import com.storeapp.store.services.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +20,11 @@ public class CategoryController {
     CategoryService categoryService;
 
     @GetMapping("")
-    public List<CategoryDTO> getAllCategories() {
-        return categoryService.getAllCategories();
+    public ResponseEntity<List<CategoryDTO>> getAllCategories() {
+        var categories = categoryService.getAllCategories();
+        if (categories == null || categories.size() == 0){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok().body(categories);
     }
 }
