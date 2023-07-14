@@ -7,6 +7,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.HttpStatus;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -24,14 +25,14 @@ public class ReviewControllerTest {
         var expected = TestData.reviewDtoList;
         Mockito.when(reviewService.getAllReviews()).thenReturn(expected);
         var actual = reviewController.getAllReviews();
-        assertEquals(expected.get(0).getComment(), actual.get(0).getComment());
+        assertEquals(expected.get(0).getComment(), actual.getBody().get(0).getComment());
     }
 
     @Test
     void getAllReviewsTestReturnsNull() {
         Mockito.when(reviewService.getAllReviews()).thenReturn(null);
         var actual = reviewController.getAllReviews();
-        assertNull(actual);
+        assertEquals(HttpStatus.NOT_FOUND, actual.getStatusCode());
     }
 
     @Test
@@ -39,13 +40,13 @@ public class ReviewControllerTest {
         var expected = TestData.reviewDtoList;
         Mockito.when(reviewService.getReviewsByProduct(1)).thenReturn(expected);
         var actual = reviewController.getReviewsByProduct("1");
-        assertEquals(expected.get(0).getComment(), actual.get(0).getComment());
+        assertEquals(expected.get(0).getComment(), actual.getBody().get(0).getComment());
     }
 
     @Test
     void getReviewsByProductReturnsEmptyListIfInvalidTest() {
         var actual = reviewController.getReviewsByProduct("asd");
-        assertEquals(0, actual.size());
+        assertEquals(HttpStatus.BAD_REQUEST, actual.getStatusCode());
     }
 
     @Test
@@ -53,12 +54,12 @@ public class ReviewControllerTest {
         var expected = TestData.reviewDtoList;
         Mockito.when(reviewService.getReviewsByUser(1)).thenReturn(expected);
         var actual = reviewController.getReviewsByUser("1");
-        assertEquals(expected.get(0).getComment(), actual.get(0).getComment());
+        assertEquals(expected.get(0).getComment(), actual.getBody().get(0).getComment());
     }
 
     @Test
     void getReviewsByUserReturnsEmptyListIfInvalidTest() {
         var actual = reviewController.getReviewsByUser("asd");
-        assertEquals(0, actual.size());
+        assertEquals(HttpStatus.BAD_REQUEST, actual.getStatusCode());
     }
 }
