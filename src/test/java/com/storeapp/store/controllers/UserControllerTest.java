@@ -10,6 +10,8 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,15 +39,15 @@ public class UserControllerTest {
         List<AdminUserDTO> expectedList = new ArrayList<>();
         expectedList.add((expected));
         Mockito.when(userService.getAllUsers()).thenReturn(expectedList);
-        List<AdminUserDTO> actualList = userController.getAllUsers();
-        assertEquals(expectedList.get(0).getFirstName(), actualList.get(0).getFirstName());
+        ResponseEntity<List<AdminUserDTO>> actualList = userController.getAllUsers();
+        assertEquals(expectedList.get(0).getFirstName(), actualList.getBody().get(0).getFirstName());
     }
 
     @Test
     void getAllUsersTestReturnNull() {
         Mockito.when(userService.getAllUsers()).thenReturn(null);
-        List<AdminUserDTO> actual = userController.getAllUsers();
-        assertNull(actual);
+        ResponseEntity<List<AdminUserDTO>> actual = userController.getAllUsers();
+        assertEquals(HttpStatus.NOT_FOUND, actual.getStatusCode());
     }
 
     @Test
@@ -53,7 +55,7 @@ public class UserControllerTest {
         int userId = 1;
         Mockito.when(userService.getUserById(1)).thenReturn(TestData.adminUserDTO);
         var result = userController.getUserById("1");
-        assertEquals("John", result.getFirstName());
+        assertEquals("John", result.getBody().getFirstName());
     }
 
 }

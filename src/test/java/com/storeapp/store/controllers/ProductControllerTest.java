@@ -26,7 +26,7 @@ public class ProductControllerTest {
         var expected = TestData.productDtoList;
         Mockito.when(productService.getAllProducts()).thenReturn(expected);
         var actual = productController.getAllProducts();
-        assertEquals(expected.get(0).getCategory(), actual.get(0).getCategory());
+        assertEquals(expected.get(0).getCategory(), actual.getBody().get(0).getCategory());
     }
 
     @Test
@@ -52,7 +52,7 @@ public class ProductControllerTest {
         var expected = TestData.productDTO;
         Mockito.when(productService.getProductById(anyLong())).thenReturn(expected);
         var actual = productController.getProductById(1L);
-        assertEquals(expected.getCategory(), actual.getCategory());
+        assertEquals(expected.getCategory(), actual.getBody().getCategory());
     }
 
     @Test
@@ -60,7 +60,7 @@ public class ProductControllerTest {
         var expected = TestData.productDtoList;
         Mockito.when(productService.getProductsByCategoryId(anyLong())).thenReturn(expected);
         var actual = productController.getProductsByCategoryId(1L);
-        assertEquals(expected.get(0).getCategory(), actual.get(0).getCategory());
+        assertEquals(expected.get(0).getCategory(), actual.getBody().get(0).getCategory());
     }
 
 }

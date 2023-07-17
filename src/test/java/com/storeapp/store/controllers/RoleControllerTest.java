@@ -7,6 +7,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.HttpStatus;
 
 import java.util.ArrayList;
 
@@ -28,14 +29,14 @@ public class RoleControllerTest {
         var expected = TestData.roleDTOList;
         Mockito.when(roleService.getAllRoles()).thenReturn(expected);
         var actual = roleController.getAllRoles();
-        assertEquals(expected, actual);
+        assertEquals(expected, actual.getBody());
     }
 
     @Test
     void getAllRolesTestReturnsNull() {
         Mockito.when(roleService.getAllRoles()).thenReturn(new ArrayList<>());
         var actual = roleController.getAllRoles();
-        assertEquals(0, actual.size());
+        assertEquals(HttpStatus.NOT_FOUND, actual.getStatusCode());
     }
 
 }

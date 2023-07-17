@@ -3,6 +3,7 @@ package com.storeapp.store.controllers;
 import com.storeapp.store.models.AdminUserDTO;
 import com.storeapp.store.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,19 +19,25 @@ public class UserController {
     UserService userService;
 
     @GetMapping("")
-    public List<AdminUserDTO> getAllUsers() {
+    public ResponseEntity<List<AdminUserDTO>> getAllUsers() {
         var userList = userService.getAllUsers();
-        return userList;
+
+        if (userList == null || userList.size() == 0){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(userList);
     }
 
     @GetMapping("/{id}")
-    public AdminUserDTO getUserById(@PathVariable String id) {
+    public ResponseEntity<AdminUserDTO> getUserById(@PathVariable String id) {
         int userId = 0;
         try {
             userId = Integer.parseInt(id);
         } catch (NumberFormatException e) {
             System.out.println("Invalid ID");
+            return ResponseEntity.badRequest().header("Error: ", "Invalid user ID.").build();
         }
-        return userService.getUserById(userId);
+        var user = userService.getUserById(userId);
+        return ResponseEntity.ok(user);
     }
 }
