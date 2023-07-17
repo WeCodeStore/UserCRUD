@@ -5,6 +5,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -15,7 +18,8 @@ public class ProductDTO {
     private double price;
     private long quantity;
     private String sku;
-    private String image;
+    private String faceImage;
+    private List<String> images;
     private String description;
     private String category;
     private double avgReviewRate;
@@ -24,5 +28,13 @@ public class ProductDTO {
     public void setCategory(Category category) {
         var catName = category.getName();
         this.category = catName;
+    }
+
+    public void setImages(List<Image> images) {
+        var list = new ArrayList<String>();
+        for(Image image : images) {
+            list.add(image.getImageUrl());
+        }
+        this.images = list;
     }
 }
