@@ -32,6 +32,7 @@ public class Product {
     private double price;
     private long quantity;
     private String sku;
+    private String faceImage;
 
     private String description;
 
@@ -42,7 +43,7 @@ public class Product {
     @OneToMany( mappedBy="product",
             cascade=CascadeType.ALL
     )
-    private List<Image> images = new ArrayList<>();
+    private List<Image> images;
 
     public void addImage(Image image){
         images.add(image);

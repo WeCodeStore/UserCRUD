@@ -32,26 +32,25 @@ INSERT INTO CATEGORY (name, titleImage) VALUES ('Outdoor', 'https://static.homeg
  ('Bed & Bath', 'https://static.homegoods.com/content/v1/static_content/images/homepage/23_APR_WK1/Summer_Site_CatTiles_1322771_D_Bedding.jpg'),
  ('Kitchen & Dining', 'https://static.homegoods.com/content/v1/static_content/images/homepage/23_APR_WK1/Summer_Site_CatTiles_1322771_D_KitchenDining.jpg');
 
-INSERT INTO PRODUCT (productId, name, price, quantity, sku, description, categoryId) VALUES
-          (1, 'bear', 12.9, 25, 'GY90j', 'description', 4 ),
-          (2, 'Sounds of Summer 2023', 9.9, 10, 'GY90j', 'description', 4 ),
-          (3, 'Chemical', 12.9, 45, 'Z5679', 'Pop Music', 6 ),
-          (4, 'HUGGIES', 12.9, 25, 'B07MP6VXRN', 'Huggies Little Snugglers Diapers', 5),
-          (5, 'The Science of Spice', 18.9, 15, '1465475575', 'Understand Flavor Connections and Revolutionize Your Cooking', 5 ),
-          (6, 'SAMSUNG Galaxy S23 Ultra Cell Phone', 999.00, 10, 'B0BLP45GY8', 'Factory Unlocked Android Smartphone, 256GB, 200MP Camera, Night Mode, Long Battery Life, S Pen, US Version, 2023, Phantom Black', 3 ),
-          (7, 'First Time Knitting', 11.9, 25, '1589238052', 'absolute beginners guide book, learning to knit is within reach. Like having your very own instructor, this book guides you carefully from your first nervous cast-on to confident knitting. With descriptions and guides.', 5 ),
-          (8, 'INSIGNIA 32-inch Class F20 Series Smart HD', 79.99, 5, 'B09ZLTMWWH', '720p resolution View your favorite movies, shows and games in high definition.', 3 ),
-          (9, 'Tree of Life Vitamin C', 19.0, 8, 'B014PGEEO2', 'Retinol and Hyaluronic Acid serum for Brightening, Firming, & Hydrating for Face - 3 Ct x 1 Fl Oz - Total Skin Reset, Anti Aging , Dark Spot Correcting', 1),
-          (10, 'BBTFAA 𝟔𝟎𝐏𝐂𝐒 Under Eye Patches', 11.9, 4, 'B0BZCKX7VL', '24K Gold Collagen Eye Mask for Puffy Eyes', 2 ),
-          (11, 'GAMZOO STEM Building', 39.9, 10, 'B07Q31WX1C', 'Toys for Kids with 2-in-1 Remote Control Racer Snap Together Engineering Kits Early Learning Racecar Building Blocks', 4 ),
-          (12, 'DOWELL Magnetic Screwdriver Set', 25.9, 12, 'B09C27ZDYL', 'DOWELL Magnetic Screwdriver Set', 2 ),
-          (13, 'KUDES Ski Goggles', 9.9, 30, 'B0BF8XWHZC', 'UV Protection Snowboard Sunglasses, Cycling Motorcycle Snow Sports Gear Accessories for Kids', 6 ),
-          (14, 'Stance Barracks', 32.9, 16, 'B0B7MLZKQN', '2-Pack Snow Sport Socks', 6),
-          (15, 'Dell OptiPlex 9020',700.50,5, 'B0BLTY5SZQ', 'Desktop Computer i7-4790 Small Form Factor PC, 16GB Ram 1TB M.2 MVMe', 3);
+INSERT INTO PRODUCT (productId, name, price, quantity, sku, faceImage, description, categoryId) VALUES
+          (1, 'bear', 12.9, 25, 'GY90j', 'http://commondatastorage.googleapis.com/codeskulptor-demos/riceracer_assets/img/tree_2.png', 'description', 4 ),
+          (2, 'Sounds of Summer 2023', 9.9, 10, 'GY90j', '', 'description', 4 ),
+          (3, 'Chemical', 12.9, 45, 'Z5679', '', 'Pop Music', 6 ),
+          (4, 'HUGGIES', 12.9, 25, 'B07MP6VXRN', '', 'Huggies Little Snugglers Diapers', 5),
+          (5, 'The Science of Spice', 18.9, 15, '1465475575', '', 'Understand Flavor Connections and Revolutionize Your Cooking', 5 ),
+          (6, 'SAMSUNG Galaxy S23 Ultra Cell Phone', 999.00, 10, 'B0BLP45GY8', '', 'Factory Unlocked Android Smartphone, 256GB, 200MP Camera, Night Mode, Long Battery Life, S Pen, US Version, 2023, Phantom Black', 3 ),
+          (7, 'First Time Knitting', 11.9, 25, '1589238052', '', 'absolute beginners guide book, learning to knit is within reach. Like having your very own instructor, this book guides you carefully from your first nervous cast-on to confident knitting. With descriptions and guides.', 5 ),
+          (8, 'INSIGNIA 32-inch Class F20 Series Smart HD', 79.99, 5, 'B09ZLTMWWH', '', '720p resolution View your favorite movies, shows and games in high definition.', 3 ),
+          (9, 'Tree of Life Vitamin C', 19.0, 8, 'B014PGEEO2', '', 'Retinol and Hyaluronic Acid serum for Brightening, Firming, & Hydrating for Face - 3 Ct x 1 Fl Oz - Total Skin Reset, Anti Aging , Dark Spot Correcting', 1),
+          (10, 'BBTFAA 𝟔𝟎𝐏𝐂𝐒 Under Eye Patches', 11.9, 4, 'B0BZCKX7VL', '', '24K Gold Collagen Eye Mask for Puffy Eyes', 2 ),
+          (11, 'GAMZOO STEM Building', 39.9, 10, 'B07Q31WX1C', '', 'Toys for Kids with 2-in-1 Remote Control Racer Snap Together Engineering Kits Early Learning Racecar Building Blocks', 4 ),
+          (12, 'DOWELL Magnetic Screwdriver Set', 25.9, 12, 'B09C27ZDYL', '', 'DOWELL Magnetic Screwdriver Set', 2 ),
+          (13, 'KUDES Ski Goggles', 9.9, 30, 'B0BF8XWHZC', '', 'UV Protection Snowboard Sunglasses, Cycling Motorcycle Snow Sports Gear Accessories for Kids', 6 ),
+          (14, 'Stance Barracks', 32.9, 16, 'B0B7MLZKQN', '', '2-Pack Snow Sport Socks', 6),
+          (15, 'Dell OptiPlex 9020',700.50,5, 'B0BLTY5SZQ', '', 'Desktop Computer i7-4790 Small Form Factor PC, 16GB Ram 1TB M.2 MVMe', 3);
 
 INSERT INTO IMAGE ( productId,name, type, imageUrl)
-VALUES (1, 'brush', 'JPG', 'C:/images/brush1.jpg'),
-       (1, 'tree', 'png', 'http://commondatastorage.googleapis.com/codeskulptor-demos/riceracer_assets/img/tree_2.png'),
+VALUES (1, 'tree', 'png', 'http://commondatastorage.googleapis.com/codeskulptor-demos/riceracer_assets/img/tree_2.png'),
        (1, 'Soda', 'png', 'https://us.coca-cola.com/content/dam/nagbrands/us/coke/en/products/coke-zero-sugar/kozs-plp-thumbnail.png'),
        (1, 'cream', 'jpg', 'https://pics.walgreens.com/prodimg/17163/900.jpg'),
        (1,'Curl Enhancer', 'png', 'https://www.barbersalon.com/media/catalog/product/cache/f6e6b1e75ba80be48e3706c64e276ab2/2/-/2-sheamoisture-28160.png'),
