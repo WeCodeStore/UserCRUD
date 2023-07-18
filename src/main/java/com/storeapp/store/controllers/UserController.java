@@ -29,15 +29,19 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<AdminUserDTO> getUserById(@PathVariable String id) {
+    public ResponseEntity<AdminUserDTO> getUserById(@PathVariable int id) {
         int userId = 0;
-        try {
+       /* try {
             userId = Integer.parseInt(id);
         } catch (NumberFormatException e) {
             System.out.println("Invalid ID");
             return ResponseEntity.badRequest().header("Error: ", "Invalid user ID.").build();
+        } */
+
+        if (id <= 0){
+            ResponseEntity.badRequest().header("Error", "Invalid user ID").build();
         }
-        var user = userService.getUserById(userId);
+        var user = userService.getUserById(id);
         return ResponseEntity.ok(user);
     }
 }

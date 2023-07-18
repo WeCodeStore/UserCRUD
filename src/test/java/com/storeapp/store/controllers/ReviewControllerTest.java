@@ -39,27 +39,27 @@ public class ReviewControllerTest {
     void getReviewsByProductTest() {
         var expected = TestData.reviewDtoList;
         Mockito.when(reviewService.getReviewsByProduct(1)).thenReturn(expected);
-        var actual = reviewController.getReviewsByProduct("1");
+        var actual = reviewController.getReviewsByProduct(1);
         assertEquals(expected.get(0).getComment(), actual.getBody().get(0).getComment());
     }
 
-    @Test
+   /* @Test
     void getReviewsByProductReturnsEmptyListIfInvalidTest() {
         var actual = reviewController.getReviewsByProduct("asd");
         assertEquals(HttpStatus.BAD_REQUEST, actual.getStatusCode());
-    }
+    } */
 
     @Test
     void getReviewsByUserTest() {
         var expected = TestData.reviewDtoList;
         Mockito.when(reviewService.getReviewsByUser(1)).thenReturn(expected);
-        var actual = reviewController.getReviewsByUser("1");
+        var actual = reviewController.getReviewsByUser(1);
         assertEquals(expected.get(0).getComment(), actual.getBody().get(0).getComment());
     }
 
-    @Test
+   /* @Test
     void getReviewsByUserReturnsEmptyListIfInvalidTest() {
         var actual = reviewController.getReviewsByUser("asd");
         assertEquals(HttpStatus.BAD_REQUEST, actual.getStatusCode());
-    }
+    } */
 }
