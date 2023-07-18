@@ -30,14 +30,6 @@ public class UserController {
 
     @GetMapping("/{id}")
     public ResponseEntity<AdminUserDTO> getUserById(@PathVariable int id) {
-        int userId = 0;
-       /* try {
-            userId = Integer.parseInt(id);
-        } catch (NumberFormatException e) {
-            System.out.println("Invalid ID");
-            return ResponseEntity.badRequest().header("Error: ", "Invalid user ID.").build();
-        } */
-
         if (id <= 0){
             ResponseEntity.badRequest().header("Error", "Invalid user ID").build();
         }

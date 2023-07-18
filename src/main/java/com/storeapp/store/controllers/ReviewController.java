@@ -34,20 +34,10 @@ public class ReviewController {
 
     @GetMapping("/product/{id}")
     public ResponseEntity<List<ReviewDTO>> getReviewsByProduct(@PathVariable long id) {
-        int productId = 0;
-       /* try {
-            productId = Integer.parseInt(id);
-        } catch (NumberFormatException e) {
-            System.out.println("Invalid ID");
-            return ResponseEntity.badRequest().header("Error: ", "Invalid product ID.").build();
-        } */
-
         if (id <= 0){
             return ResponseEntity.badRequest().header("Error", "Invalid product ID").build();
         }
-
         var reviews = reviewService.getReviewsByProduct(id);
-
         if (reviews == null || reviews.size() == 0){
             return ResponseEntity.notFound().build();
         }
@@ -57,17 +47,9 @@ public class ReviewController {
 
     @GetMapping("/user/{id}")
     public ResponseEntity<List<ReviewDTO>> getReviewsByUser(@PathVariable long id) {
-        int userId = 0;
-       /* try {
-            userId = Integer.parseInt(id);
-        } catch (NumberFormatException e) {
-            System.out.println("Invalid ID");
-            return ResponseEntity.badRequest().header("Error: ", "Invalid product ID.").build();
-        } */
         if (id <= 0){
             return ResponseEntity.badRequest().header("Error", "Invalid user ID").build();
         }
-
 
         var reviews = reviewService.getReviewsByUser(id);
         if (reviews == null || reviews.size() == 0){

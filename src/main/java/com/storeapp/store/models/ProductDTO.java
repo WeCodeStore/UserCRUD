@@ -37,4 +37,6 @@ public class ProductDTO {
         }
         this.images = list;
     }
+
+
 }
