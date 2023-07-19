@@ -27,7 +27,7 @@ public class ReviewService {
         return dtoList;
     }
 
-    public List<ReviewDTO> getReviewsByProduct(int productId) {
+    public List<ReviewDTO> getReviewsByProduct(long productId) {
         var reviewList = reviewRepository.findByProductId(productId);
         var dtoList = new ArrayList<ReviewDTO>();
         for(Review review: reviewList) {
@@ -36,7 +36,7 @@ public class ReviewService {
         return dtoList;
     }
 
-    public List<ReviewDTO> getReviewsByUser(int userId) {
+    public List<ReviewDTO> getReviewsByUser(long userId) {
         var reviewList = reviewRepository.findByUserId(userId);
         var dtoList = new ArrayList<ReviewDTO>();
         for(Review review: reviewList) {

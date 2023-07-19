@@ -31,6 +31,7 @@ public class Image {
     public Image(String imageUrl){
         this.imageUrl= imageUrl;
     }
+
     @Override
     public boolean equals(Object o){
        if (this == o) return true;
