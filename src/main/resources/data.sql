@@ -36,10 +36,10 @@ INSERT INTO PRODUCT (productId, name, price, quantity, sku, faceImage, descripti
           (1, 'bear', 12.9, 25, 'GY90j', 'http://commondatastorage.googleapis.com/codeskulptor-demos/riceracer_assets/img/tree_2.png', 'description', 4 ),
           (2, 'Sounds of Summer 2023', 9.9, 10, 'GY90j', '', 'description', 4 ),
           (3, 'Chemical', 12.9, 45, 'Z5679', '', 'Pop Music', 6 ),
-          (4, 'HUGGIES', 12.9, 25, 'B07MP6VXRN', '', 'Huggies Little Snugglers Diapers', 5),
-          (5, 'The Science of Spice', 18.9, 15, '1465475575', '', 'Understand Flavor Connections and Revolutionize Your Cooking', 5 ),
+          (4, 'LAURA ASHLEY', 24.99, 25, 'B07MP6VXRN', 'https://img.homegoods.com/homegoods?set=DisplayName[e8],prd[7000024208_NS9861186],ag[no]&call=url[file:tjxrPRD2_prod.chain]&v=3', '6pc Antibacterial Bath Towel Set', 5),
+          (5, 'TOMMY BAHAMA', 29.99, 51, '1465475575', 'https://img.homegoods.com/homegoods?set=DisplayName[e8],prd[7000036078_NS9861226],ag[no]&call=url[file:tjxrPRD2_prod.chain]&v=3', '2pk 40x72 Antibacterial Bath Sheet Set', 5 ),
           (6, 'SAMSUNG Galaxy S23 Ultra Cell Phone', 999.00, 10, 'B0BLP45GY8', '', 'Factory Unlocked Android Smartphone, 256GB, 200MP Camera, Night Mode, Long Battery Life, S Pen, US Version, 2023, Phantom Black', 3 ),
-          (7, 'First Time Knitting', 11.9, 25, '1589238052', '', 'absolute beginners guide book, learning to knit is within reach. Like having your very own instructor, this book guides you carefully from your first nervous cast-on to confident knitting. With descriptions and guides.', 5 ),
+          (7, 'VERA WANG', 14.99, 25, '1589238052', 'https://img.homegoods.com/homegoods?set=DisplayName[e8],prd[7000034390_NS9861170],ag[no]&call=url[file:tjxrPRD2_prod.chain]&v=3', '72x72 Cotton Watercolor Floral Shower Curtain', 5 ),
           (8, 'INSIGNIA 32-inch Class F20 Series Smart HD', 79.99, 5, 'B09ZLTMWWH', '', '720p resolution View your favorite movies, shows and games in high definition.', 3 ),
           (9, 'Tree of Life Vitamin C', 19.0, 8, 'B014PGEEO2', '', 'Retinol and Hyaluronic Acid serum for Brightening, Firming, & Hydrating for Face - 3 Ct x 1 Fl Oz - Total Skin Reset, Anti Aging , Dark Spot Correcting', 1),
           (10, 'MADE IN INDIA', 249.99, 4, 'B0BZCKX7VL', 'https://img.homegoods.com/homegoods?set=DisplayName[e8],prd[7000020454_NS9861028],ag[no]&call=url[file:tjxrPRD2_prod.chain]&v=3', '25in Bone Inlay Medallion Top Table With Wood Base', 2 ),
@@ -53,7 +53,11 @@ INSERT INTO PRODUCT (productId, name, price, quantity, sku, faceImage, descripti
           (18, 'MADE IN INDONESIA', 199.99, 7, 'B80HKSL24Q', 'https://img.homegoods.com/homegoods?set=DisplayName[e8],prd[7000028785_NS9861002],ag[no]&call=url[file:tjxrPRD2_prod.chain]&v=3', '21x24 Woven 1 Drawer Side Table', 2),
           (19, 'TROY LIGHTING', 79.99, 12, 'L897SDFGW1', 'https://img.homegoods.com/homegoods?set=DisplayName[e8],prd[7000024917_NS9861109],ag[no]&call=url[file:tjxrPRD2_prod.chain]&v=3', '8x24 Taylor 3 Light Glass Shade Vanity Light', 2),
           (20, 'LILLIAN BY LILLIAN AUGUST', 399.99, 4, 'TB12S4DDFA', 'https://img.homegoods.com/homegoods?set=DisplayName[e8],prd[7000028589_NS9860996],ag[no]&call=url[file:tjxrPRD2_prod.chain]&v=3', '2pk 38in Rope Woven Counter Stools With Cushions', 2),
-          (21, 'BROOKS BROTHERS', 499.99, 3, 'BR078SACQ1', 'https://img.homegoods.com/homegoods?set=DisplayName[e8],prd[7000023888_NS10657773],ag[no]&call=url[file:tjxrPRD2_prod.chain]&v=3', '30.5in Leather Armchair With Wood Frame', 2);
+          (21, 'BROOKS BROTHERS', 499.99, 3, 'BR078SACQ1', 'https://img.homegoods.com/homegoods?set=DisplayName[e8],prd[7000023888_NS10657773],ag[no]&call=url[file:tjxrPRD2_prod.chain]&v=3', '30.5in Leather Armchair With Wood Frame', 2),
+          (22, 'MADE IN PORTUGAL', 34.99, 78, 'BSS2S45SQL', 'https://img.homegoods.com/homegoods?set=DisplayName[e8],prd[7000026560_NS9860995],ag[no]&call=url[file:tjxrPRD2_prod.chain]&v=3', 'Brushed Cotton Bed Blanket With Stitched Edge', 5),
+          (23, 'TAHARI HOME', 59.99, 25, 'BSS254SD2A', 'https://img.homegoods.com/homegoods?set=DisplayName[e8],prd[7000022282_NS9873476],ag[no]&call=url[file:tjxrPRD2_prod.chain]&v=3', 'Embroidered Floral Quilt Set', 5),
+          (24, 'MISSONI', 129.99, 17, 'TWLS43421AS', 'https://img.homegoods.com/homegoods?set=DisplayName[e8],prd[7000022076_NS9861170],ag[no]&call=url[file:tjxrPRD2_prod.chain]&v=3', 'Made In Portugal 39x59 Cotton Bath Sheet', 5),
+          (25, 'PEANUTS', 19.99, 46, 'BAA562GSAQ', 'https://img.homegoods.com/homegoods?set=DisplayName[e8],prd[7000029536_NS9861170],ag[no]&call=url[file:tjxrPRD2_prod.chain]&v=3', 'Printed Velvetloft Snoopy And Woodstock Halloween Printed Blanket', 5);
 
 INSERT INTO IMAGE ( productId, name, type, imageUrl)
 VALUES (1, 'tree', 'png', 'http://commondatastorage.googleapis.com/codeskulptor-demos/riceracer_assets/img/tree_2.png'),
@@ -61,6 +65,12 @@ VALUES (1, 'tree', 'png', 'http://commondatastorage.googleapis.com/codeskulptor-
        (1, 'cream', 'jpg', 'https://pics.walgreens.com/prodimg/17163/900.jpg'),
        (1,'Curl Enhancer', 'png', 'https://www.barbersalon.com/media/catalog/product/cache/f6e6b1e75ba80be48e3706c64e276ab2/2/-/2-sheamoisture-28160.png'),
        (2, 'Camera', 'png', 'https://www.dahuasecurity.com/asset/upload/uploads/image/20181029/DH-IPC-PDBW5831-B360-E4_image_20181025_thumb.png'),
+       (4, 'Towels', 'png', 'https://img.homegoods.com/homegoods?set=DisplayName[e8],prd[7000024208_alt1],ag[no]&call=url[file:tjxrPRD2_prod.chain]&v=3'),
+       (4, 'Towels', 'png', 'https://img.homegoods.com/homegoods?set=DisplayName[e8],prd[7000024208_alt2],ag[no]&call=url[file:tjxrPRD2_prod.chain]&v=3'),
+       (5, 'Towels', 'png', 'https://img.homegoods.com/homegoods?set=DisplayName[e8],prd[7000036078_alt1],ag[no]&call=url[file:tjxrPRD2_prod.chain]&v=3'),
+       (5, 'Towels', 'png', 'https://img.homegoods.com/homegoods?set=DisplayName[e8],prd[7000036078_alt2],ag[no]&call=url[file:tjxrPRD2_prod.chain]&v=3'),
+       (7, 'Curtain', 'jpg', 'https://img.homegoods.com/homegoods?set=DisplayName[e8],prd[7000034390_alt1],ag[no]&call=url[file:tjxrPRD2_prod.chain]&v=3'),
+       (7, 'Curtain', 'jpg', 'https://img.homegoods.com/homegoods?set=DisplayName[e8],prd[7000034390_alt2],ag[no]&call=url[file:tjxrPRD2_prod.chain]&v=3'),
        (10, 'Table', 'png', 'https://img.homegoods.com/homegoods?set=DisplayName[e8],prd[7000020454_alt1],ag[no]&call=url[file:tjxrPRD2_prod.chain]&v=3'),
        (12, 'Lamp', 'png', 'https://img.homegoods.com/homegoods?set=DisplayName[e8],prd[7000030711_alt1],ag[no]&call=url[file:tjxrPRD2_prod.chain]&v=3'),
        (12, 'Lamp', 'png', 'https://img.homegoods.com/homegoods?set=DisplayName[e8],prd[7000030711_alt2],ag[no]&call=url[file:tjxrPRD2_prod.chain]&v=3'),
@@ -73,7 +83,15 @@ VALUES (1, 'tree', 'png', 'http://commondatastorage.googleapis.com/codeskulptor-
        (20, 'Stools', 'png', 'https://img.homegoods.com/homegoods?set=DisplayName[e8],prd[7000028589_alt1],ag[no]&call=url[file:tjxrPRD2_prod.chain]&v=3'),
        (20, 'Stools', 'png', 'https://img.homegoods.com/homegoods?set=DisplayName[e8],prd[7000028589_alt2],ag[no]&call=url[file:tjxrPRD2_prod.chain]&v=3'),
        (21, 'Armchair', 'png', 'https://img.homegoods.com/homegoods?set=DisplayName[e8],prd[7000023888_alt1],ag[no]&call=url[file:tjxrPRD2_prod.chain]&v=3'),
-       (21, 'Armchair', 'png', 'https://img.homegoods.com/homegoods?set=DisplayName[e8],prd[7000023888_alt2],ag[no]&call=url[file:tjxrPRD2_prod.chain]&v=3');
+       (21, 'Armchair', 'png', 'https://img.homegoods.com/homegoods?set=DisplayName[e8],prd[7000023888_alt2],ag[no]&call=url[file:tjxrPRD2_prod.chain]&v=3'),
+       (22, 'Bed Blanket', 'png', 'https://img.homegoods.com/homegoods?set=DisplayName[e8],prd[7000026560_alt1],ag[no]&call=url[file:tjxrPRD2_prod.chain]&v=3'),
+       (22, 'Bed Blanket', 'png', 'https://img.homegoods.com/homegoods?set=DisplayName[e8],prd[7000026560_alt2],ag[no]&call=url[file:tjxrPRD2_prod.chain]&v=3'),
+       (23, 'Quilt Set', 'png', 'https://img.homegoods.com/homegoods?set=DisplayName[e8],prd[7000022282_alt1],ag[no]&call=url[file:tjxrPRD2_prod.chain]&v=3'),
+       (23, 'Quilt Set', 'png', 'https://img.homegoods.com/homegoods?set=DisplayName[e8],prd[7000022282_alt2],ag[no]&call=url[file:tjxrPRD2_prod.chain]&v=3'),
+       (24, 'Towels', 'png', 'https://img.homegoods.com/homegoods?set=DisplayName[e8],prd[7000022076_alt1],ag[no]&call=url[file:tjxrPRD2_prod.chain]&v=3'),
+       (24, 'Towels', 'png', 'https://img.homegoods.com/homegoods?set=DisplayName[e8],prd[7000022076_alt2],ag[no]&call=url[file:tjxrPRD2_prod.chain]&v=3'),
+       (25, 'Bed Blanket', 'png', 'https://img.homegoods.com/homegoods?set=DisplayName[e8],prd[7000029536_alt1],ag[no]&call=url[file:tjxrPRD2_prod.chain]&v=3'),
+       (25, 'Bed Blanket', 'png', 'https://img.homegoods.com/homegoods?set=DisplayName[e8],prd[7000029536_alt2],ag[no]&call=url[file:tjxrPRD2_prod.chain]&v=3');
 
 INSERT INTO ORDERTABLE (userId, orderNumber, orderDate, totalPrice) VALUES ( 1, 578446, '2023-02-24', 25.8 );
 
