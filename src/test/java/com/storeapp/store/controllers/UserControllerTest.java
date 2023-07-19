@@ -54,7 +54,7 @@ public class UserControllerTest {
     void getUserByIdTest() {
         int userId = 1;
         Mockito.when(userService.getUserById(1)).thenReturn(TestData.adminUserDTO);
-        var result = userController.getUserById("1");
+        var result = userController.getUserById(1);
         assertEquals("John", result.getBody().getFirstName());
     }
 
