@@ -13,7 +13,7 @@ import java.util.Optional;
 public interface ReviewRepository extends JpaRepository<Review, Integer> {
     List<Review> findByProductId(long id);
 
-    List<Review> findByUserId(int userId);
+    List<Review> findByUserId(long userId);
 
     @Query(value="SELECT count(r) FROM Review r WHERE productId = ?1")
     long getProductTotalReviews(long productId);
