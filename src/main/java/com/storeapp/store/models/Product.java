@@ -33,7 +33,6 @@ public class Product {
     private long quantity;
     private String sku;
     private String faceImage;
-
     private String description;
 
     @ManyToOne
