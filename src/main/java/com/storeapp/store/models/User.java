@@ -18,10 +18,6 @@ import java.util.List;
 @Setter
 public class User {
 
-    @JsonIgnore
-    @ManyToMany(mappedBy = "userList")
-    private List<Role> roles;
-
     @Id
     @Min(value = 1)
     @SequenceGenerator(name="user_seq", initialValue = 9)
@@ -30,9 +26,8 @@ public class User {
     private long userId;
     private String firstName;
     private String lastName;
-    private String username;
     private String email;
-
+    private String role;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "shippingAddressId", referencedColumnName = "addressId")
@@ -48,7 +43,7 @@ public class User {
 //    @JsonIgnore
 //    private List<Review> reviewList;
 
-    public User(String username) {
-        this.username = username;
-    }
+//    public User(String username) {
+//        this.username = username;
+//    }
 }

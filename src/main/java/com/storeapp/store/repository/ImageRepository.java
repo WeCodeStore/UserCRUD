@@ -12,7 +12,7 @@ import java.util.Optional;
 
 @Repository
 public interface ImageRepository extends JpaRepository<Image, Long> {
-    Optional<Image> findByName(String name);
+    List<Image> findByName(String name);
 
     @Transactional
     @Query(value = "Select * from image  i where i.productId = :productId", nativeQuery = true)

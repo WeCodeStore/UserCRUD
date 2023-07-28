@@ -1,6 +1,6 @@
 package com.storeapp.store.controllers;
 
-import com.storeapp.store.models.AdminUserDTO;
+import com.storeapp.store.models.UserDTO;
 import com.storeapp.store.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +19,7 @@ public class UserController {
     UserService userService;
 
     @GetMapping("")
-    public ResponseEntity<List<AdminUserDTO>> getAllUsers() {
+    public ResponseEntity<List<UserDTO>> getAllUsers() {
         var userList = userService.getAllUsers();
 
         if (userList == null || userList.size() == 0){
@@ -29,7 +29,7 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<AdminUserDTO> getUserById(@PathVariable int id) {
+    public ResponseEntity<UserDTO> getUserById(@PathVariable int id) {
         if (id <= 0){
             ResponseEntity.badRequest().header("Error", "Invalid user ID").build();
         }
