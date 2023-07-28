@@ -1,6 +1,6 @@
 package com.storeapp.store.controllers;
 
-import com.storeapp.store.models.AdminUserDTO;
+import com.storeapp.store.models.UserDTO;
 import com.storeapp.store.services.UserService;
 import com.storeapp.store.utils.TestData;
 import org.junit.jupiter.api.BeforeEach;
@@ -35,25 +35,25 @@ public class UserControllerTest {
 
     @Test
     void getAllUsersTest() {
-        var expected = TestData.adminUserDTO;
-        List<AdminUserDTO> expectedList = new ArrayList<>();
+        var expected = TestData.UserDTO;
+        List<UserDTO> expectedList = new ArrayList<>();
         expectedList.add((expected));
         Mockito.when(userService.getAllUsers()).thenReturn(expectedList);
-        ResponseEntity<List<AdminUserDTO>> actualList = userController.getAllUsers();
+        ResponseEntity<List<UserDTO>> actualList = userController.getAllUsers();
         assertEquals(expectedList.get(0).getFirstName(), actualList.getBody().get(0).getFirstName());
     }
 
     @Test
     void getAllUsersTestReturnNull() {
         Mockito.when(userService.getAllUsers()).thenReturn(null);
-        ResponseEntity<List<AdminUserDTO>> actual = userController.getAllUsers();
+        ResponseEntity<List<UserDTO>> actual = userController.getAllUsers();
         assertEquals(HttpStatus.NOT_FOUND, actual.getStatusCode());
     }
 
     @Test
     void getUserByIdTest() {
         int userId = 1;
-        Mockito.when(userService.getUserById(1)).thenReturn(TestData.adminUserDTO);
+        Mockito.when(userService.getUserById(1)).thenReturn(TestData.UserDTO);
         var result = userController.getUserById(1);
         assertEquals("John", result.getBody().getFirstName());
     }

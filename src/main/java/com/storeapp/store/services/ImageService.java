@@ -53,11 +53,14 @@ public class ImageService {
     }  */
 
     @Transactional
-    public ImageDTO getInfoByImageByName(String name) {
-        Optional<Image> dbImage = imageDataRepository.findByName(name);
-
-        if (dbImage != null && dbImage.isPresent()) {
-            return modelMapper.map(dbImage.get(), ImageDTO.class);
+    public List<ImageDTO> getInfoByImageByName(String name) {
+        List<Image> dbImages = imageDataRepository.findByName(name);
+        List<ImageDTO> imageList = new ArrayList<>();
+        if (dbImages != null) {
+            for(Image image:dbImages){
+                imageList.add(modelMapper.map(image, ImageDTO.class));
+            };
+            return imageList;
         }
 
         return null;
@@ -87,15 +90,15 @@ public class ImageService {
         return imageDTOList;
     }
 
-    @Transactional
-    public byte[] getImage(String name) {
-        Optional<Image> dbImage = imageDataRepository.findByName(name);
-        byte[] image = null;
-
-        if (dbImage != null && dbImage.isPresent() && dbImage.get().getImageData() != null) {
-            image = ImageUtil.decompressImage(dbImage.get().getImageData());
-        }
-        return image;
-    }
+//    @Transactional
+//    public byte[] getImage(String name) {
+//        Optional<Image> dbImage = imageDataRepository.findByName(name);
+//        byte[] image = null;
+//
+//        if (dbImage != null && dbImage.isPresent() && dbImage.get().getImageData() != null) {
+//            image = ImageUtil.decompressImage(dbImage.get().getImageData());
+//        }
+//        return image;
+//    }
 
 }

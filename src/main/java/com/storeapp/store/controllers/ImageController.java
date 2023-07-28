@@ -33,14 +33,14 @@ public class ImageController {
     }
 
     @GetMapping("/info/{name}")
-    public ResponseEntity<ImageDTO>  getImageInfoByName(@PathVariable("name") String name){
+    public ResponseEntity<List<ImageDTO>>  getImageInfoByName(@PathVariable("name") String name){
         if (name.isBlank() ){
             return ResponseEntity.badRequest().header("Error", "The image name must not be empty string.").build();
         }
-        ImageDTO image = imageDataService.getInfoByImageByName(name);
+        List<ImageDTO> images = imageDataService.getInfoByImageByName(name);
 
         return ResponseEntity.status(HttpStatus.OK)
-                .body(image);
+                .body(images);
     }
 
     @GetMapping("/byproduct/{productId}")

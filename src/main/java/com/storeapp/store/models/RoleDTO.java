@@ -21,7 +21,7 @@ public class RoleDTO {
 
         var list = new ArrayList<String>();
         for(User user:userList){
-            list.add(user.getUsername());
+            list.add(user.getEmail());
         }
         this.userList = list;
     }

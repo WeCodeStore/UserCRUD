@@ -1,6 +1,6 @@
 package com.storeapp.store.services;
 
-import com.storeapp.store.models.AdminUserDTO;
+import com.storeapp.store.models.UserDTO;
 import com.storeapp.store.models.User;
 import com.storeapp.store.repository.UserRepository;
 import org.modelmapper.ModelMapper;
@@ -16,20 +16,33 @@ public class UserService {
     @Autowired
     UserRepository userRepository;
 
-    ModelMapper modelMapper = new ModelMapper();
+    ModelMapper mapper = new ModelMapper();
 
-    public List<AdminUserDTO> getAllUsers() {
-        var dtoList = new ArrayList<AdminUserDTO>();
+    public List<UserDTO> getAllUsers() {
+        var dtoList = new ArrayList<UserDTO>();
         var list = userRepository.findAll();
         if(list.size() > 0) {
             for (User user : list) {
-                dtoList.add(modelMapper.map(user, AdminUserDTO.class));
+                dtoList.add(mapper.map(user, UserDTO.class));
             }
         }
         return dtoList;
     }
 
-    public AdminUserDTO getUserById(int id) {
-        return modelMapper.map(userRepository.findById(id), AdminUserDTO.class);
+    public UserDTO getUserById(int id) {
+        return mapper.map(userRepository.findById(id), UserDTO.class);
+    }
+
+    public UserDTO getUserByEmail(String email) {
+        var user = userRepository.findByEmail(email);
+        if (user != null) {
+            return mapper.map(user, UserDTO.class);
+        }
+        return null;
+    }
+
+    public User saveNewUser(UserDTO newUser) {
+        User user = mapper.map(newUser, User.class);
+        return userRepository.save(user);
     }
 }

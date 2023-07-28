@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.mock.web.MockMultipartFile;
 
 import java.io.IOException;
+import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -78,11 +79,11 @@ public class ImageControllerTest {
 
     @Test
     void getImageInfoByNameTest() {
-        var expected = TestData.imageDTO;
+        var expected = TestData.imageDTOList;
 
         Mockito.when(imageService.getInfoByImageByName("tree")).thenReturn(expected);
         var actual = imageController.getImageInfoByName("tree");
-        assertEquals(expected.getName(), actual.getBody().getName());
+        assertEquals(expected.get(0).getName(), Objects.requireNonNull(actual.getBody()).get(0).getName());
     }
 
     @Test

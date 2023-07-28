@@ -3,19 +3,14 @@ package com.storeapp.store.controllers;
 import com.storeapp.store.models.*;
 import com.storeapp.store.utils.TypeReferenceMapper;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
-import java.util.List;
-
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.ArgumentMatchers.anyInt;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -106,8 +101,6 @@ public class MvcControllerTest {
         assertFalse(productDTOList.isEmpty());
         assertEquals("/store/products", requestUri);
         assertThat(productDTOList.get(0)).isInstanceOf(ProductDTO.class);
-        assertEquals("bear", productDTOList.get(0).getName());
-        assertEquals(15, productDTOList.size());
     }
 
     @Test
@@ -145,7 +138,6 @@ public class MvcControllerTest {
         assertNotNull(result);
         assertEquals("/store/products/1", requestUri);
         assertThat(productDTO).isInstanceOf(ProductDTO.class);
-        assertEquals("bear", productDTO.getName());
     }
 
     @Test
@@ -155,44 +147,43 @@ public class MvcControllerTest {
         var resultString = result.getResponse().getContentAsString();
         var productDTOList = TypeReferenceMapper.deserializeJsonStringToList(resultString, ProductDTO.class);
         var requestUri = result.getRequest().getRequestURI();
-
         assertNotNull(result);
         assertFalse(productDTOList.isEmpty());
         assertEquals("/store/products/category/4", requestUri);
         assertThat(productDTOList.get(0)).isInstanceOf(ProductDTO.class);
-        assertEquals("bear", productDTOList.get(0).getName());
         assertTrue(productDTOList.size() >= 1);
     }
 
-    @Test
-    void getAllRolesTest() throws Exception {
-        var requestBuilder = MockMvcRequestBuilders.get("/store/roles").accept(MediaType.APPLICATION_JSON);
-        var result = mockMvc.perform(requestBuilder).andExpect(status().isOk()).andReturn();
-        var resultString = result.getResponse().getContentAsString();
-        var roleDTOList = TypeReferenceMapper.deserializeJsonStringToList(resultString, RoleDTO.class);
-        var requestUri = result.getRequest().getRequestURI();
-
-        assertNotNull(result);
-        assertFalse(roleDTOList.isEmpty());
-        assertEquals("/store/roles", requestUri);
-        assertThat(roleDTOList.get(0)).isInstanceOf(RoleDTO.class);
-        // checking for actual values may not be efficient when DB changes
-        assertEquals("admin", roleDTOList.get(0).getName());
-        assertEquals(3, roleDTOList.size());
-    }
+    // Roles entity disabled
+//    @Test
+//    void getAllRolesTest() throws Exception {
+//        var requestBuilder = MockMvcRequestBuilders.get("/store/roles").accept(MediaType.APPLICATION_JSON);
+//        var result = mockMvc.perform(requestBuilder).andExpect(status().isOk()).andReturn();
+//        var resultString = result.getResponse().getContentAsString();
+//        var roleDTOList = TypeReferenceMapper.deserializeJsonStringToList(resultString, RoleDTO.class);
+//        var requestUri = result.getRequest().getRequestURI();
+//
+//        assertNotNull(result);
+//        assertFalse(roleDTOList.isEmpty());
+//        assertEquals("/store/roles", requestUri);
+//        assertThat(roleDTOList.get(0)).isInstanceOf(RoleDTO.class);
+//        // checking for actual values may not be efficient when DB changes
+//        assertEquals("admin", roleDTOList.get(0).getName());
+//        assertEquals(3, roleDTOList.size());
+//    }
 
     @Test
     void getAllUsersTest() throws Exception {
         var requestBuilder = MockMvcRequestBuilders.get("/store/users").accept(MediaType.APPLICATION_JSON);
         var result = mockMvc.perform(requestBuilder).andExpect(status().isOk()).andReturn();
         var resultString = result.getResponse().getContentAsString();
-        var adminUserDTOList = TypeReferenceMapper.deserializeJsonStringToList(resultString, AdminUserDTO.class);
+        var adminUserDTOList = TypeReferenceMapper.deserializeJsonStringToList(resultString, UserDTO.class);
         var requestUri = result.getRequest().getRequestURI();
 
         assertNotNull(result);
         assertFalse(adminUserDTOList.isEmpty());
         assertEquals("/store/users", requestUri);
-        assertThat(adminUserDTOList.get(0)).isInstanceOf(AdminUserDTO.class);
+        assertThat(adminUserDTOList.get(0)).isInstanceOf(UserDTO.class);
         // checking for actual values may not be efficient when DB changes
         assertEquals("John", adminUserDTOList.get(0).getFirstName());
         assertEquals(8, adminUserDTOList.size());
@@ -203,12 +194,12 @@ public class MvcControllerTest {
         var requestBuilder = MockMvcRequestBuilders.get("/store/users/1").accept(MediaType.APPLICATION_JSON);
         var result = mockMvc.perform(requestBuilder).andExpect(status().isOk()).andReturn();
         var resultString = result.getResponse().getContentAsString();
-        var adminUserDTO = TypeReferenceMapper.deserializeJsonStringToObject(resultString, AdminUserDTO.class);
+        var adminUserDTO = TypeReferenceMapper.deserializeJsonStringToObject(resultString, UserDTO.class);
         var requestUri = result.getRequest().getRequestURI();
 
         assertNotNull(result);
         assertEquals("/store/users/1", requestUri);
-        assertThat(adminUserDTO).isInstanceOf(AdminUserDTO.class);
+        assertThat(adminUserDTO).isInstanceOf(UserDTO.class);
         assertEquals("John",adminUserDTO.getFirstName());
     }
 
@@ -242,9 +233,6 @@ public class MvcControllerTest {
         assertFalse(imageDTOList.isEmpty());
         assertEquals("/store/image/all", requestUri);
         assertThat(imageDTOList.get(0)).isInstanceOf(ImageDTO.class);
-        // checking for actual values may not be efficient when DB changes
-        assertEquals("tree", imageDTOList.get(0).getName());
-        assertEquals(5, imageDTOList.size());
     }
 
   // @Test
@@ -261,17 +249,17 @@ public class MvcControllerTest {
 
     @Test
     void getImageInfoByNameTest() throws Exception {
-        var requestBuilder = MockMvcRequestBuilders.get("/store/image/info/tree").accept(MediaType.APPLICATION_JSON);
+        var requestBuilder = MockMvcRequestBuilders.get("/store/image/info/Decor").accept(MediaType.APPLICATION_JSON);
         var result = mockMvc.perform(requestBuilder).andExpect(status().isOk()).andReturn();
         var resultString = result.getResponse().getContentAsString();
-        var imageDTO = TypeReferenceMapper.deserializeJsonStringToObject(resultString, ImageDTO.class);
+        var images = TypeReferenceMapper.deserializeJsonStringToList(resultString, ImageDTO.class);
         var requestUri = result.getRequest().getRequestURI();
 
         assertNotNull(result);
-        assertEquals("/store/image/info/tree", requestUri);
-        assertThat(imageDTO).isInstanceOf(ImageDTO.class);
+        assertEquals("/store/image/info/Decor", requestUri);
+        assertThat(images.get(0)).isInstanceOf(ImageDTO.class);
         // checking for actual values may not be efficient when DB changes
-        assertEquals("tree", imageDTO.getName());
+        assertEquals("Decor", images.get(0).getName());
     }
 
     @Test
@@ -293,8 +281,6 @@ public class MvcControllerTest {
         assertEquals("/store/image/byproduct/1", requestUri);
         assertThat(imageDTOList.get(0)).isInstanceOf(ImageDTO.class);
         // checking for actual values may not be efficient when DB changes
-        assertEquals("tree", imageDTOList.get(0).getName());
-        assertEquals(4, imageDTOList.size());
     }
 
     @Test

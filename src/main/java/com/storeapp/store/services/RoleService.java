@@ -1,9 +1,7 @@
 package com.storeapp.store.services;
 
-import com.storeapp.store.models.AdminUserDTO;
 import com.storeapp.store.models.Role;
 import com.storeapp.store.models.RoleDTO;
-import com.storeapp.store.models.User;
 import com.storeapp.store.repository.RoleRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
