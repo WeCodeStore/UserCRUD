@@ -10,17 +10,19 @@ INSERT INTO ADDRESS (city, street, state, postalCode, country)
      ('Hutto', '3160 Limmer Loop', 'TX', '78634', 'USA'),
      ('Wasilla', '4900 Palmer-Wasilla Hwy', 'AK', '99654', 'USA'),
      ('Adairsville', '7439 Adairsville Hwy', 'GA', '30103', 'USA'),
-     ('Amherst', '4498 Main St', 'NY', '14226', 'USA');
+     ('Amherst', '4498 Main St', 'NY', '14226', 'USA'),
+     ('Melbourne', '4498 Main St', 'FL', '14226', 'USA');
 
 INSERT INTO USERTABLE (userId, firstName, lastName, email, role, shippingAddressId, billingAddressId, phoneNumber)
  VALUES (1, 'John', 'Smith', 'jsmith@shop-app.com', 'admin', 2, 1, 'phone'),
  (2, 'Jane', 'Doe', 'jdoe@email.com', 'user', 3, 3, 'phone'),
- (3, 'Robert', 'Johnson', 'jdoe@email.com', 'user', 5, 4, 'phone'),
- (4, 'Mary', 'Williams', 'jdoe@email.com', 'user', 6, 6, 'phone'),
- (5, 'Elizabeth', 'Jones', 'jdoe@email.com', 'user', 7, 7, 'phone'),
- (6, 'Anthony', 'Miller', 'jdoe@email.com', 'user', 8, 8, 'phone'),
- (7, 'Frank', 'Davis', 'jdoe@email.com', 'user', 9, 9, 'phone'),
- (8, 'Jeff', 'Martinez', 'jdoe@email.com', 'user', 10, 10, 'phone');
+ (3, 'Robert', 'Johnson', 'jdoe2@email.com', 'user', 5, 4, 'phone'),
+ (4, 'Mary', 'Williams', 'jdoe7@email.com', 'user', 6, 6, 'phone'),
+ (5, 'Elizabeth', 'Jones', 'jdoe3@email.com', 'user', 7, 7, 'phone'),
+ (6, 'Anthony', 'Miller', 'jdoe4@email.com', 'user', 8, 8, 'phone'),
+ (7, 'Frank', 'Davis', 'jdoe5@email.com', 'user', 9, 9, 'phone'),
+ (8, 'Jeff', 'Martinez', 'jdoe6@email.com', 'user', 10, 10, 'phone'),
+ (9, 'John', 'Smith', 'joe11@mail.com', 'user', 11, 11, 'phone');
 
 INSERT INTO USERROLES (role_Id, user_Id) VALUES (1, 1),(2, 1),(3,2),
     (3, 4), (3,5), (2, 6), (3, 6), (3, 7), (2, 8), (3, 8);

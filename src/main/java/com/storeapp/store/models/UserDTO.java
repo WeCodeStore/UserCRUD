@@ -14,8 +14,8 @@ public class UserDTO {
     private String lastName;
     private String email;
     private String role = "user";
-    private Address shippingAddress;
-    private Address billingAddress;
+    private AddressDTO shippingAddress;
+    private AddressDTO billingAddress;
     private String phoneNumber;
 
 }

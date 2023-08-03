@@ -41,8 +41,9 @@ public class UserService {
         return null;
     }
 
-    public User saveNewUser(UserDTO newUser) {
+    public UserDTO saveNewUser(UserDTO newUser) {
         User user = mapper.map(newUser, User.class);
-        return userRepository.save(user);
+        var savedUser=userRepository.save(user);
+        return mapper.map(savedUser, UserDTO.class);
     }
 }
